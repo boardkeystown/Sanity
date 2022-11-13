@@ -1,6 +1,6 @@
-const slideShow_images = ["./../assets/gallery/1.png",
-    "./../assets/gallery/2.png",
-    "./../assets/gallery/3.png"];
+const slideShow_images = ["assets/gallery/1.png",
+    "assets/gallery/2.png",
+    "assets/gallery/3.png"];
 
 var image_index = 0;
 
