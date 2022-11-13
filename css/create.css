@@ -1,0 +1,208 @@
+#main {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 80vw;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 2vw 2vh;
+    width: inherit;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    background: #2b2c31;
+}
+
+#navbar a {
+    text-decoration: none;
+    list-style-type: none;
+    color: aliceblue;
+    font-size: xx-large;
+}
+
+#navbar .nav-btn-bg {
+    width: fit-content;
+    background: #1b6d85;
+    border-radius: 0.1cm;
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#toolbox {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #638869;
+}
+
+#button-zoom {
+    padding-top: 1vh;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#button-zoom button {
+    color: black;
+}
+
+#presets {
+    padding-top: 1vh;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#presets button {
+    color: black;
+}
+
+#input-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+}
+
+.ruleSet-containerClass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+#ruleSet-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.ruleSet-Style {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5vh;
+}
+.labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 140px;
+}
+.rules{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+input {
+    color: black;
+}
+
+.add-new-person {
+    text-decoration: none;
+    padding: 0.5vh 0.5vw;
+    background: #1b6d85;
+    border-radius: 2cm;
+}
+
+.submit-style {
+    font-size: xx-large;
+    margin: 1vh;
+    width: 100%;
+    padding: 0.5vh 0.5vw;
+    background: #518c12;
+}
+
+.submit-style:hover {
+    cursor: pointer;
+    font-size: xxx-large;
+    margin: 1vh;
+    width: 100%;
+    padding: 0.5vh 0.5vw;
+    background: chartreuse;
+}
+
+
+svg {
+    border: 1px solid chartreuse;
+    background: rgba(0, 0, 0, 1);
+}
+
+
+/*DROP DOWN FROM
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
+*/
+
+/*
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+*/
