@@ -11,73 +11,81 @@
 </head>
 <body>
 <div id="main">
+
     <div id="navbar">
         <a href="index.html" target="_blank"> <b id="site-name">Sanity</b> </a>
         <a class="nav-btn-bg" href="manual.html" target="_blank"> Review Manual </a>
         <a class="nav-btn-bg" href="gallery.html" target="_blank"> View Gallery </a>
         <a class="nav-btn-bg" href="about.html" target="_blank"> About </a>
     </div>
-    <div id="container">
-        <script src="./js/lsystem.js"></script>
-        <div id="toolbox">
-            <div id="button-zoom">
-                <button onclick="zoomIn()">Zoom in</button>
-                <button onclick="zoomOut()">Zoom out</button>
-                <button onclick="resetZoom()">Reset zoom</button>
-                <button onclick="panLeft()">Pan left</button>
-                <button onclick="panRight()">Pan right</button>
-                <button onclick="center()">Center</button>
-                <button onclick="saveSVG()">SAVE SVG</button>
-            </div>
-            <div id="presets">
-                <button onclick="loadPreset(1)">Dragon Curve</button>
-                <button onclick="loadPreset(2)">Triangle</button>
-                <button onclick="loadPreset(3)">Simple Tree</button>
-                <button onclick="loadPreset(4)">Koch</button>
-                <button onclick="loadPreset(5)">Classic Sierpinski Curve</button>
-                <button onclick="loadPreset(6)">Snowflake</button>
-            </div>
-            <div id="input-flex">
-                <form id="input-form" onsubmit="dummy();return false">
-                    <div class="ruleSet-containerClass">
-                        <div class="ruleSet-Style">
-                            <div class="labels">Iterations:</div>
-                            <div class="rules">
-                                <input type="text" name="iterations" placeholder="Iterations">
-                            </div>
+
+    <div class="button-zoom">
+        <button onclick="zoomIn()">Zoom in</button>
+        <button onclick="zoomOut()">Zoom out</button>
+        <button onclick="resetZoom()">Reset zoom</button>
+        <button onclick="panLeft()">Pan left</button>
+        <button onclick="panRight()">Pan right</button>
+        <button onclick="center()">Center</button>
+        <button onclick="saveSVG()">SAVE SVG</button>
+    </div>
+
+    <div id="container" class="svg-container">
+         <script src="./js/lsystem.js"></script>
+    </div>
+
+    <div id="toolbox">
+
+        <div id="presets">
+            Presets:
+            <button onclick="loadPreset(1)">Dragon Curve</button>
+            <button onclick="loadPreset(2)">Triangle</button>
+            <button onclick="loadPreset(3)">Simple Tree</button>
+            <button onclick="loadPreset(4)">Koch</button>
+            <button onclick="loadPreset(5)">Classic Sierpinski Curve</button>
+            <button onclick="loadPreset(6)">Snowflake</button>
+        </div>
+
+        <div id="input-flex">
+            <form id="input-form" onsubmit="dummy();return false" autocomplete="off">
+                <div class="ruleSet-containerClass">
+                    <div class="ruleSet-Style">
+                        <div class="labels">Iterations:</div>
+                        <div class="rules">
+                            <input type="text" name="iterations" placeholder="Iterations">
                         </div>
                     </div>
-                    <div class="ruleSet-containerClass">
-                        <div class="ruleSet-Style">
-                            <div class="labels">Axiom:</div>
-                            <div class="rules">
-                                <input type="text" name="axiom" placeholder="axiom">
-                            </div>
+                </div>
+                <div class="ruleSet-containerClass">
+                    <div class="ruleSet-Style">
+                        <div class="labels">Axiom:</div>
+                        <div class="rules">
+                            <input type="text" name="axiom" placeholder="axiom">
                         </div>
                     </div>
-                    <div id="ruleSet-container">
-                        <div class="ruleSet-Style">
-                            <div class="labels">Rule Set 1:</div>
-                            <div class="rules">
-                                <input type="text" id="char" name="rules[1][char]" placeholder="Char">
-                                <input type="text" id="rule" name="rules[1][rule]" placeholder="Rule">
-                            </div>
+                </div>
+                <div id="ruleSet-container">
+                    <div class="ruleSet-Style">
+                        <div class="labels">Rule Set 1:</div>
+                        <div class="rules">
+                            <input type="text" id="char" name="rules[1][char]" placeholder="Char">
+                            <input type="text" id="rule" name="rules[1][rule]" placeholder="Rule">
                         </div>
                     </div>
-                    <div class="ruleSet-containerClass">
-                        <div class="ruleSet-Style">
-                            <div class="labels">Angle:</div>
-                            <div class="rules">
-                                <input type="text" name="angle" placeholder="angle">
-                            </div>
+                </div>
+                <div class="ruleSet-containerClass">
+                    <div class="ruleSet-Style">
+                        <div class="labels">Angle:</div>
+                        <div class="rules">
+                            <input type="text" name="angle" placeholder="angle">
                         </div>
                     </div>
-                    <a href="javascript:;" id="add-rule" class="add-new-person">Add New Rule!</a>
-                    <input type="submit" class="submit-style" value="Generate">
-                </form>
-            </div>
+                </div>
+                <a href="javascript:;" id="add-rule" class="add-new-person">Add New Rule!</a>
+                <input type="submit" class="submit-style" value="Generate">
+            </form>
         </div>
     </div>
+
 </div>
 </body>
 </html>

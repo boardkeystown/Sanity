@@ -15,10 +15,14 @@ let strokeWidth = 3;
 
 //Windows Dimensions
 const window_dims = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    wincw: window.innerWidth / 2,
-    winch: window.innerHeight / 2
+    // width: window.innerWidth,
+    // height: window.innerHeight,
+    // wincw: window.innerWidth / 2,
+    // winch: window.innerHeight / 2
+    width: 400,
+    height: 225,
+    wincw: 400 / 2,
+    winch: 225 / 2
 };
 
 //https://calculateaspectratio.com/
@@ -307,6 +311,22 @@ const replacementRules = {
             }
         ]
     },
+    flying_fish_winds: {
+        axiom: 'F++F++F++F++F',
+        angle: 36,
+        length: 30,
+        iterations: 4,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F++F++F+++++F-F++FG'
+            },
+            {
+                char: 'G',
+                rule: 'F-F'
+            }
+        ]
+    },
 }
 
 const default_line_values = {
@@ -521,6 +541,8 @@ function stackPop(d, dy, a, c = 'black') {
 
 var inputData = document.getElementById("input-form");
 
+
+//Generate the L-SYSTEM, run, submit
 function getData(form) {
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
     var formData = new FormData(form);
@@ -538,15 +560,12 @@ function getData(form) {
             iterations:0,
             rules: [],
     }
-
     let rule = {
         char: "",
         rule: "",
     }
-
     const re1 = new RegExp('(rules)\\[\\d+\\]\\[char\\]');
     const re2 = new RegExp('(rules)\\[\\d+\\]\\[rule\\]');
-
     for (var pair of formData.entries()) {
         console.log(pair[0] + ": " + pair[1]);
         pair[1]=pair[1].replace(/^\s+|\s+$/gm,'');
@@ -582,8 +601,9 @@ function getData(form) {
     console.log(user_lsys)
     fractal = user_lsys;
 
+    clearCurrentSVG();
+
     var ins = LSystem(fractal.iterations, fractal.axiom);
-    // console.log(ins)
     drawLsystem(ins, fractal.angle,fractal.length);
 }
 
@@ -689,26 +709,28 @@ function makeFormItemNested(data) {
 function populateRuleset(data) {
     var formGuts = document.getElementById("input-form");
     var last = document.getElementById("add-rule");
-
     formGuts.insertBefore(makeFormItem("iterations","Iterations","Iterations",data.iterations),last);
-
     formGuts.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
-
     formGuts.insertBefore(makeFormItemNested(data),last);
-
     formGuts.insertBefore(makeFormItem("angle","Angle","Angle",data.angle),last);
+}
 
+
+function clearCurrentSVG() {
+    //Reset Zoom
+    center();
+    //Reset line
+    resetLine()
+    //Clear the screen
+    // d3.select("svg").selectAll("*").remove();
+    svg.selectAll("g").remove();
+    g = svg.append('g');
 }
 
 function loadPreset(preset) {
     switch (preset) {
         case 1:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
+            clearCurrentSVG();
             //Remove data in form
             clearFormData();
             //Load data which this corresponds with into form
@@ -717,12 +739,7 @@ function loadPreset(preset) {
             populateRuleset(fractal);
             break
         case 2:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
+            clearCurrentSVG();
             //Remove data in form
             clearFormData();
             //Load data which this corresponds with into form
@@ -731,12 +748,7 @@ function loadPreset(preset) {
             populateRuleset(fractal);
             break;
         case 3:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
+            clearCurrentSVG();
             //Remove data in form
             clearFormData();
             //Load data which this corresponds with into form
@@ -745,12 +757,7 @@ function loadPreset(preset) {
             populateRuleset(fractal);
             break;
         case 4:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
+            clearCurrentSVG();
             //Remove data in form
             clearFormData();
             //Load data which this corresponds with into form
@@ -759,12 +766,7 @@ function loadPreset(preset) {
             populateRuleset(fractal);
             break;
         case 5:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
+            clearCurrentSVG();
             //Remove data in form
             clearFormData();
             //Load data which this corresponds with into form
@@ -773,13 +775,7 @@ function loadPreset(preset) {
             populateRuleset(fractal);
             break;
         case 6:
-            //Reset line
-            resetLine()
-            //Clear the screen
-            // d3.select("svg").selectAll("*").remove();
-            svg.selectAll("g").remove();
-            g = svg.append('g');
-            //Remove data in form
+            clearCurrentSVG();
             clearFormData();
             //Load data which this corresponds with into form
             fractal = replacementRules.snow_flake;
@@ -865,15 +861,21 @@ Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then((lsys) => {
 //https://www.d3indepth.com/zoom-and-pan/
 //https://calculateaspectratio.com/
 
+// https://stackoverflow.com/questions/42907047/d3-v4-ajust-zoom-to-center
+//TODO: should be a way to center the zoom
+
 let zoom = d3.zoom()
     .scaleExtent([0, Infinity])
     .on('zoom', handleZoom);
 
 let svg = d3.select("#container").append("svg")
     .attr("viewBox", `0 0 ${window_dims.width} ${window_dims.height}`)
-    .attr("width", `${vb_size.width + 500}`)
-    .attr("height", `${vb_size.height}`)
+    // .attr("width", `${vb_size.width + 500}`)
+    // .attr("height", `${vb_size.height}`)
     .attr("id", "container-svg")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .classed("svg-content", true);
+
 let g = svg.append('g');
 
 function initZoom() {
@@ -900,15 +902,19 @@ function zoomOut() {
 }
 
 function resetZoom() {
+
     svg.selectAll('g')
         .transition()
         .call(zoom.scaleTo, 1);
 }
 
 function center() {
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.translateTo, 0.5 * window_dims.width, 0.5 * window_dims.height);
+    zoom.transform(svg,d3.zoomIdentity);
+
+     // svg.selectAll('g')
+     //    .transition()
+     //    .call(zoom.translateTo, 0.5 * window_dims.width, 0.5 * window_dims.height);
+     //    // .call(zoom.translateTo, window_dims.wincw, window_dims.winch);
 }
 
 function panLeft() {
@@ -923,6 +929,8 @@ function panRight() {
         .call(zoom.translateBy, 50, 0);
 }
 
+initZoom();
+
 function saveSVG() {
     //https://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
     var svgData = document.getElementById("container-svg").outerHTML;
@@ -935,4 +943,4 @@ function saveSVG() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
-initZoom();
+

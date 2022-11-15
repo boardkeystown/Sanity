@@ -1,3 +1,9 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
 #main {
     display: flex;
     align-items: center;
@@ -26,20 +32,46 @@
 }
 
 #navbar .nav-btn-bg {
-    width: fit-content;
     background: #1b6d85;
-    border-radius: 0.1cm;
+    border-radius: 1vw;
+    padding: 0.05cm;
+    box-shadow: black 4px 4px 4px;
+}
+
+#navbar .nav-btn-bg:hover {
+    padding: 0.08cm;
+    text-shadow: #000000 1px 1px 3px;
+    box-shadow: black 8px 8px 8px;
+}
+
+
+/*https://chartio.com/resources/tutorials/how-to-resize-an-svg-when-the-window-is-resized-in-d3-js/*/
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.5%;
+    vertical-align: top;
+    /*overflow: hidden;*/
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #container {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /*width: 100%;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }
 
+
 #toolbox {
+    margin-top: 0.5vh;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -48,7 +80,7 @@
     background: #638869;
 }
 
-#button-zoom {
+.button-zoom {
     padding-top: 1vh;
     margin: 0;
     width: 100%;
@@ -57,21 +89,24 @@
     align-items: center;
     justify-content: center;
 }
-#button-zoom button {
+.button-zoom button {
     color: black;
 }
 
 #presets {
-    padding-top: 1vh;
-    margin: 0;
-    width: 100%;
+    padding: 1vh;
+    margin: 1vh 1vw;
+    /*width: 100%;*/
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 0.1cm;
+    border: 0.1cm solid #000000;
 }
 
 #presets button {
+    display: flex;
     color: black;
 }
 
@@ -140,24 +175,26 @@ input {
 
 .submit-style {
     font-size: xx-large;
-    margin: 1vh;
+    width: 100%;
+    padding: 0.5vh 0.5vw;
+    color: chartreuse;
+    background: #335613;
+}
+
+.submit-style:hover {
+    cursor: pointer;
+    /*font-size: xxx-large;*/
+    /*margin: 1vh;*/
+    color: #c7efb0;
+    text-shadow: 0 0 5px #000000, 0 0 15px #050000;
     width: 100%;
     padding: 0.5vh 0.5vw;
     background: #518c12;
 }
 
-.submit-style:hover {
-    cursor: pointer;
-    font-size: xxx-large;
-    margin: 1vh;
-    width: 100%;
-    padding: 0.5vh 0.5vw;
-    background: chartreuse;
-}
-
 
 svg {
-    border: 1px solid chartreuse;
+    border: 0.02cm solid chartreuse;
     background: rgba(0, 0, 0, 1);
 }
 
