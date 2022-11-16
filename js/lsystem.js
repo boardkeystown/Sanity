@@ -327,6 +327,18 @@ const replacementRules = {
             }
         ]
     },
+    i_see_starts: {
+        axiom: 'F+F+F+F+F',
+        angle: 72,
+        length: 30,
+        iterations: 4,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F++F++F+++++F-F++F'
+            }
+        ]
+    }
 }
 
 const default_line_values = {
@@ -339,7 +351,7 @@ const default_line_values = {
     counter: 0,
 }
 
-var line_values = {
+let line_values = {
     x1: default_line_values.x1,
     y1: default_line_values.y1,
     x2: default_line_values.x2,
@@ -352,26 +364,25 @@ var line_values = {
 //Stack used for push and pop rules
 const stack = []
 
-var fractal = replacementRules.Classic_Sierpinski_Curve_dot;
+let fractal = replacementRules.triangle;
 
-var fractal = replacementRules.triangle;
-
-console.log(fractal)
+// console.log(fractal)
 
 //**********************************************************************************************************************
 //Generate L-System
 function LSystem(numIters, axiom) {
-    var startString = axiom;
-    var endString = "";
+    let startString = axiom;
+    let endString = "";
     for (let i = 0; i < numIters; i++) {
         endString = processString(startString)
         startString = endString
     }
+    // console.log(endString.length)
     return endString;
 }
 
 function processString(oldStr) {
-    var newstr = "";
+    let newstr = "";
     for (let i = 0; i < oldStr.length; i++) {
         newstr = newstr + rules(oldStr.charAt(i));
     }
@@ -379,7 +390,6 @@ function processString(oldStr) {
 }
 
 function rules(char) {
-    var newstr = ""
     for (let i = 0; i < fractal.rules.length; i++) {
         if (char === fractal.rules[i].char) {
             return fractal.rules[i].rule;
@@ -425,54 +435,25 @@ function computeValues(distX, distY, angle) {
     //https://academo.org/demos/rotation-about-point/
     //https://stackoverflow.com/questions/2259476/rotating-a-point-about-another-point-2d
     //https://danceswithcode.net/engineeringnotes/rotations_in_2d/rotations_in_2d.html
-    //https://danceswithcode.net/engineeringnotes/rotations_in_2d/rotations_in_2d.html
-    //https://danceswithcode.net/engineeringnotes/rotations_in_2d/rotations_in_2d.html
-    //https://danceswithcode.net/engineeringnotes/rotations_in_2d/rotations_in_2d.html
     //copy points
     line_values.x1 = line_values.x2
     line_values.y1 = line_values.y2
     line_values.x2 = line_values.x1 + distX
     line_values.y2 = line_values.y2 + distY
 
-    // if (line_values.toggle == 0) {
-    //     return;
-    // }
-    // line_values.toggle=0;
+    let cos = Math.cos(line_values.rad);
+    let sin = Math.sin(line_values.rad);
+    let cx = line_values.x1
+    let cy = line_values.y1
 
-    var cos = Math.cos(line_values.rad);
-    var sin = Math.sin(line_values.rad);
-    var cx = line_values.x1
-    var cy = line_values.y1
-
-    // console.log(cx)
-    // console.log(cy)
-
-    var x = ((line_values.x2 - cx) * cos) - ((line_values.y2 - cy) * sin) + cx;
-    var y = ((line_values.x2 - cx) * sin) + ((line_values.y2 - cy) * cos) + cy;
+    let x = ((line_values.x2 - cx) * cos) - ((line_values.y2 - cy) * sin) + cx;
+    let y = ((line_values.x2 - cx) * sin) + ((line_values.y2 - cy) * cos) + cy;
 
     line_values.x2 = x
     line_values.y2 = y
-
-    // console.log("HI")
-    // console.log("line_values.angle = " + line_values.angle)
-    // console.log("rad = " + line_values.rad)
-    // console.log(line_values.x1)
-    // console.log(line_values.y1)
-    // console.log(line_values.x2)
-    // console.log(line_values.y2)
-    // console.log("HI")
 }
 
 function drawLine(c = 'black') {
-    // svg.append('g')
-    //     .append('line')
-    //     .style("stroke", `${c}`)
-    //     .style("stroke-width", swidth)
-    //     .attr("x1", line_values.x1)
-    //     .attr("y1", line_values.y1)
-    //     .attr("x2", line_values.x2)
-    //     .attr("y2", line_values.y2)
-    //     .attr("stroke-linecap", "round")
     g.append('line')
         .style("stroke", `${c}`)
         .style("stroke-width", strokeWidth)
@@ -520,9 +501,9 @@ function backward(d, a, c = 'black') {
 function stackPush(d, dy, a, c = 'black') {
     //[
     // push current drawing state onto stack
-    var line_values_cp = {
+    let line_values_cp = {
         x1: line_values.x1,
-        y1: line_values.x2,
+        y1: line_values.y1,
         x2: line_values.x2,
         y2: line_values.y2,
         angle: line_values.angle,
@@ -539,20 +520,18 @@ function stackPop(d, dy, a, c = 'black') {
     line_values = stack.pop()
 }
 
-var inputData = document.getElementById("input-form");
-
 
 //Generate the L-SYSTEM, run, submit
 function getData(form) {
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
-    var formData = new FormData(form);
+    let formData = new FormData(form);
     // iterate through entries...
     // for (var pair of formData.entries()) {
     //     console.log(pair[0] + ": " + pair[1]);
     // }
     // console.log(Object.fromEntries(formData));
     // = text.replace(/^\s+|\s+$/gm,'')
-    console.log(Object.fromEntries(formData));
+    // console.log(Object.fromEntries(formData));
     let user_lsys =  {
             axiom: '',
             angle: 0,
@@ -566,10 +545,10 @@ function getData(form) {
     }
     const re1 = new RegExp('(rules)\\[\\d+\\]\\[char\\]');
     const re2 = new RegExp('(rules)\\[\\d+\\]\\[rule\\]');
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
+    for (let pair of formData.entries()) {
+        // console.log(pair[0] + ": " + pair[1]);
         pair[1]=pair[1].replace(/^\s+|\s+$/gm,'');
-        var str = pair[0]
+        let str = pair[0]
 
         if (re1.test(pair[0])) {
             rule.char = pair[1];
@@ -598,19 +577,18 @@ function getData(form) {
             }
         }
     }
-    console.log(user_lsys)
     fractal = user_lsys;
-
     clearCurrentSVG();
-
-    var ins = LSystem(fractal.iterations, fractal.axiom);
-    drawLsystem(ins, fractal.angle,fractal.length);
+    Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then(d => {
+            drawLsystem(d[0], fractal.angle,fractal.length);
+        }
+    )
 }
 
 //ON LOAD GET THE FORM TAG!
+let inputData = document.getElementById("input-form");
 document.addEventListener('DOMContentLoaded', function() {
     inputData = document.getElementById("input-form")
-
     inputData.addEventListener("submit", function (e) {
         e.preventDefault();
         getData(e.target);
@@ -618,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-rule').onclick = addRule;
 }, false);
 
-var ruleIndex = 2;
+let ruleIndex = 2;
 function addRule () {
     let template = `
          <div class="labels">Rule Set ${ruleIndex}:</div>
@@ -637,8 +615,6 @@ function addRule () {
     ruleIndex++;
 }
 
-
-
 function dummy() {
     // console.log("hello")
 }
@@ -653,12 +629,11 @@ function resetLine() {
     line_values.counter = default_line_values.counter;
 }
 
-
 function clearFormData(){
-    var formGuts = document.getElementById("input-form");
+    let formGuts = document.getElementById("input-form");
     // console.log(formGuts)
     //Remove class stuff
-    var divs = formGuts.getElementsByClassName("ruleSet-containerClass");
+    let divs = formGuts.getElementsByClassName("ruleSet-containerClass");
     do {
         formGuts.removeChild(divs[0])
         divs = formGuts.getElementsByClassName("ruleSet-containerClass")
@@ -707,8 +682,8 @@ function makeFormItemNested(data) {
 }
 
 function populateRuleset(data) {
-    var formGuts = document.getElementById("input-form");
-    var last = document.getElementById("add-rule");
+    let formGuts = document.getElementById("input-form");
+    let last = document.getElementById("add-rule");
     formGuts.insertBefore(makeFormItem("iterations","Iterations","Iterations",data.iterations),last);
     formGuts.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
     formGuts.insertBefore(makeFormItemNested(data),last);
@@ -725,6 +700,7 @@ function clearCurrentSVG() {
     // d3.select("svg").selectAll("*").remove();
     svg.selectAll("g").remove();
     g = svg.append('g');
+    stack.length = 0;
 }
 
 function loadPreset(preset) {
@@ -933,10 +909,10 @@ initZoom();
 
 function saveSVG() {
     //https://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
-    var svgData = document.getElementById("container-svg").outerHTML;
-    var svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
-    var svgUrl = URL.createObjectURL(svgBlob);
-    var downloadLink = document.createElement("a");
+    let svgData = document.getElementById("container-svg").outerHTML;
+    let svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+    let svgUrl = URL.createObjectURL(svgBlob);
+    let downloadLink = document.createElement("a");
     downloadLink.href = svgUrl;
     downloadLink.download = "mySVG.svg";
     document.body.appendChild(downloadLink);
