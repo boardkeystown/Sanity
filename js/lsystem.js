@@ -38,7 +38,7 @@ const replacementRules = {
     dragon_curve: {
         axiom: 'F',
         angle: 90,
-        length: 20,
+        length: [20,0],
         iterations: 15,
         rules: [
             {
@@ -54,7 +54,7 @@ const replacementRules = {
     triangle: {
         axiom: 'F+F+F',
         angle: 120,
-        length: 20,
+        length: [0,20],
         iterations: 8,
         rules: [
             {
@@ -66,7 +66,7 @@ const replacementRules = {
     simple_tree: {
         axiom: 'X',
         angle: 22.5,
-        length: 10,
+        length: [0,12],
         iterations: 6,
         rules: [
             {
@@ -154,7 +154,7 @@ const replacementRules = {
     test_tree: {
         axiom: 'F',
         angle: 240,
-        length: 30,
+        length: [0,20],
         iterations: 5,
         rules: [
             {
@@ -166,7 +166,7 @@ const replacementRules = {
     snow_flake: {
         axiom: 'F++F++F++F++F',
         angle: 36,
-        length: 30,
+        length: [0,30],
         iterations: 4,
         rules: [
             {
@@ -178,7 +178,7 @@ const replacementRules = {
     rings: {
         axiom: 'F++F++F++F++F',
         angle: 61,
-        length: 20,
+        length: [0,20],
         iterations: 4,
         rules: [
             {
@@ -190,7 +190,7 @@ const replacementRules = {
     starish: {
         axiom: 'F++F++F++F++F',
         angle: 66, //65 looks like DNA???
-        length: 20,
+        length: [0,20],
         iterations: 4,
         rules: [
             {
@@ -202,7 +202,7 @@ const replacementRules = {
     test_thing: {
         axiom: 'F++F++F++F++F',
         angle: 36, //65 looks like DNA???
-        length: 20,
+        length: [0,20],
         iterations: 5,
         rules: [
             {
@@ -222,7 +222,7 @@ const replacementRules = {
     weed: {
         axiom: 'F',
         angle: 22.5,
-        length: 20,
+        length: [0,20],
         iterations: 6,
         rules: [
             {
@@ -242,7 +242,7 @@ const replacementRules = {
     square_sierpinski: {
         axiom: 'F+XF+F+XF',
         angle:  90,
-        length: 20,
+        length: [0,20],
         iterations: 6,
         rules: [
             {
@@ -254,7 +254,7 @@ const replacementRules = {
     Quadratic_Koch_Island: {
         axiom: 'F+F+F+F',
         angle:  90,
-        length: 10,
+        length: [0,10],
         iterations: 2,
         rules: [
             {
@@ -266,7 +266,7 @@ const replacementRules = {
     Board: {
         axiom: 'F+F+F+F',
         angle:  90, //90,271
-        length: 15,
+        length: [0,15],
         iterations: 3,
         rules: [
             {
@@ -278,7 +278,7 @@ const replacementRules = {
     Koch: {
         axiom: 'F++F++F',
         angle:  60,
-        length: 15,
+        length: [0,15],
         iterations:4,
         rules: [
             {
@@ -290,7 +290,7 @@ const replacementRules = {
     Classic_Sierpinski_Curve: {
         axiom: 'F--XF--F--XF',
         angle:  45,
-        length: 15,
+        length: [0,15],
         iterations:5,
         rules: [
             {
@@ -302,7 +302,7 @@ const replacementRules = {
     Classic_Sierpinski_Curve_dot: {
         axiom: '@--X@--@--X@',
         angle:  45,
-        length: 15,
+        length: [0,15],
         iterations:5,
         rules: [
             {
@@ -314,7 +314,7 @@ const replacementRules = {
     flying_fish_winds: {
         axiom: 'F++F++F++F++F',
         angle: 36,
-        length: 30,
+        length: [0,30],
         iterations: 4,
         rules: [
             {
@@ -330,7 +330,7 @@ const replacementRules = {
     i_see_starts: {
         axiom: 'F+F+F+F+F',
         angle: 72,
-        length: 30,
+        length: [0,30],
         iterations: 4,
         rules: [
             {
@@ -364,9 +364,8 @@ let line_values = {
 //Stack used for push and pop rules
 const stack = []
 
+//Main fractal ruleset
 let fractal = replacementRules.triangle;
-
-// console.log(fractal)
 
 //**********************************************************************************************************************
 //Generate L-System
@@ -417,7 +416,7 @@ const colorList = {
     c_reds:["#d90000", "#c4331f","#da3a3a"],
 }
 
-const colors = colorList.c_yelLi
+let colors = colorList.c_yelLi
 
 function chooseColor() {
     let num = line_values.counter;
@@ -526,7 +525,7 @@ function getData(form) {
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
     let formData = new FormData(form);
     // iterate through entries...
-    // for (var pair of formData.entries()) {
+    // for (let pair of formData.entries()) {
     //     console.log(pair[0] + ": " + pair[1]);
     // }
     // console.log(Object.fromEntries(formData));
@@ -535,7 +534,7 @@ function getData(form) {
     let user_lsys =  {
             axiom: '',
             angle: 0,
-            length: 20,
+            length: [0,20],
             iterations:0,
             rules: [],
     }
@@ -543,6 +542,7 @@ function getData(form) {
         char: "",
         rule: "",
     }
+    let user_color = []
     const re1 = new RegExp('(rules)\\[\\d+\\]\\[char\\]');
     const re2 = new RegExp('(rules)\\[\\d+\\]\\[rule\\]');
     for (let pair of formData.entries()) {
@@ -564,23 +564,31 @@ function getData(form) {
                 case "angle":
                     user_lsys.angle = parseFloat(pair[1]);
                     break;
-                case "length":
-                    user_lsys.length = parseInt(pair[1],10);
+                case "lengthX":
+                    user_lsys.length[0] = parseInt(pair[1],10);
+                    break;
+                case "lengthY":
+                    user_lsys.length[1] = parseInt(pair[1],10);
                     break;
                 case "iterations":
                     user_lsys.iterations =  parseInt(pair[1],10);
                     break;
+                case 'color':
+                    user_color.push(pair[1]);
+                    break;
                 default:
                     //Should never happen!
-                    // console.log(pair[0] + ": " + pair[1]);
+                    console.log(pair[0] + ": " + pair[1]);
                     console.log("AHHHHHHHHHHH!");
             }
         }
     }
+    // console.log(user_color)
+    colors = user_color;
     fractal = user_lsys;
-    clearCurrentSVG();
     Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then(d => {
-            drawLsystem(d[0], fractal.angle,fractal.length);
+            clearCurrentSVG();
+            drawLsystem(d[0], fractal.angle,...fractal.length);
         }
     )
 }
@@ -599,14 +607,18 @@ document.addEventListener('DOMContentLoaded', function() {
 let ruleIndex = 2;
 function addRule () {
     let template = `
-         <div class="labels">Rule Set ${ruleIndex}:</div>
+        <div class="labels">Rule Set ${ruleIndex}:</div>
         <div class="rules">
             <input type="text" id="char" name="rules[${ruleIndex}][char]" placeholder="Char">
             <input type="text" id="rule" name="rules[${ruleIndex}][rule]" placeholder="Rule">
-        </div>`;
+        </div>
+         <div class="tooltip"> ?
+            <span class="tooltiptext">Identity (1 letter) -><br>Production rules (letters)</span>
+        </div>
+    `;
 
     let container = document.getElementById('ruleSet-container');
-    console.log(container)
+    // console.log(container)
     let div = document.createElement("div");
     div.classList.add("ruleSet-Style");
     // console.log(div)
@@ -632,11 +644,13 @@ function resetLine() {
 function clearFormData(){
     let formGuts = document.getElementById("input-form");
     // console.log(formGuts)
+    let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
     //Remove class stuff
-    let divs = formGuts.getElementsByClassName("ruleSet-containerClass");
+    let divs = divsOuter.getElementsByClassName("ruleSet-containerClass");
+    // console.log(divs)
     do {
-        formGuts.removeChild(divs[0])
-        divs = formGuts.getElementsByClassName("ruleSet-containerClass")
+        divsOuter.removeChild(divs[0])
+        divs = divsOuter.getElementsByClassName("ruleSet-containerClass")
     } while (divs.length > 0);
     //Remove Rules
     document.getElementById("ruleSet-container").remove()
@@ -670,11 +684,25 @@ function makeFormItems(num,data) {
     return div
 }
 
+function makeFormLengths(data) {
+    let div = document.createElement("div");
+    div.classList.add('ruleSet-containerClass');
+    div.innerHTML = `
+        <div class="ruleSet-Style">
+            <div class="labels">Length:</div>
+            <div class="rules">
+                <input type="number" name="lengthX" placeholder="X" value="${data.length[0]}">
+                <input type="number" name="lengthY" placeholder="Y" value="${data.length[1]}">
+            </div>
+         </div>
+    `;
+    return div
+}
+
 
 function makeFormItemNested(data) {
     let div = document.createElement("div");
     div.setAttribute("id",'ruleSet-container');
-
     for (let i = 0; i < data.rules.length; i++) {
         div.append(makeFormItems(i+1,data.rules[i]))
     }
@@ -683,11 +711,13 @@ function makeFormItemNested(data) {
 
 function populateRuleset(data) {
     let formGuts = document.getElementById("input-form");
+    let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
     let last = document.getElementById("add-rule");
-    formGuts.insertBefore(makeFormItem("iterations","Iterations","Iterations",data.iterations),last);
-    formGuts.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
-    formGuts.insertBefore(makeFormItemNested(data),last);
-    formGuts.insertBefore(makeFormItem("angle","Angle","Angle",data.angle),last);
+    divsOuter.insertBefore(makeFormItem("iterations","Iterations","Iterations",data.iterations),last);
+    divsOuter.insertBefore(makeFormLengths(data),last);
+    divsOuter.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
+    divsOuter.insertBefore(makeFormItemNested(data),last);
+    divsOuter.insertBefore(makeFormItem("angle","Angle","Angle",data.angle),last);
 }
 
 
@@ -697,10 +727,11 @@ function clearCurrentSVG() {
     //Reset line
     resetLine()
     //Clear the screen
-    // d3.select("svg").selectAll("*").remove();
     svg.selectAll("g").remove();
     g = svg.append('g');
     stack.length = 0;
+    //reset the rule index
+    ruleIndex=2
 }
 
 function loadPreset(preset) {
@@ -764,6 +795,9 @@ function loadPreset(preset) {
 }
 
 function debug() {
+    forward(-20,-20,0,chooseColor());
+    forward(-20,0,0,chooseColor());
+    forward(-20,0,0,chooseColor());
     forward(20,0,0,chooseColor());
     forward(20,0,0,chooseColor());
     changeAngle(90)
@@ -786,7 +820,7 @@ function debug() {
     forwardDot(20,0,0,chooseColor())
 }
 
-function drawLsystem(instructions, angle, distance) {
+function drawLsystem(instructions, angle, distanceX,distanceY) {
     // //Debug Tests
     // debug()
     // return
@@ -795,13 +829,13 @@ function drawLsystem(instructions, angle, distance) {
         cmd = instructions.charAt(i);
         switch (cmd) {
             case 'F':
-                forward(0, -distance, 0, chooseColor());
+                forward(distanceX, -distanceY, 0, chooseColor());
                 break;
             case 'f':
-                move(distance, 0, 0, chooseColor());
+                move(distanceX, -distanceY, 0, chooseColor());
                 break;
             case 'G':
-                forward(distance, 0, 0, chooseColor());
+                forward(distanceX, -distanceY, 0, chooseColor());
                 break;
             case '+':
                 changeAngle(-angle);
@@ -810,17 +844,17 @@ function drawLsystem(instructions, angle, distance) {
                 changeAngle(angle);
                 break;
             case '[':
-                stackPush(distance, 0, 0);
+                stackPush(0, 0, 0);
                 break
             case ']':
-                stackPop(distance, 0, 0);
+                stackPop(0, 0, 0);
                 break
             case '|':
                 changeAngle(-180);
                 break
             case '@':
                 // Draw a dot with line width radius
-                forwardDot(0, -distance, angle, chooseColor())
+                forwardDot(distanceX, -distanceY, angle, chooseColor())
                 break
             default:
             //do nothing
@@ -829,7 +863,7 @@ function drawLsystem(instructions, angle, distance) {
 }
 
 Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then((lsys) => {
-    drawLsystem(lsys[0], fractal.angle,fractal.length);
+    drawLsystem(lsys[0], fractal.angle,...fractal.length);
 });
 
 // https://mathjs.org/docs/datatypes/matrices.html

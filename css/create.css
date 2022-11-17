@@ -54,6 +54,7 @@ body {
     vertical-align: top;
     /*overflow: hidden;*/
 }
+
 .svg-content {
     display: inline-block;
     position: absolute;
@@ -89,6 +90,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .button-zoom button {
     color: black;
 }
@@ -110,6 +112,20 @@ body {
     color: black;
 }
 
+#presets-nav * {
+    z-index: 99;
+}
+
+#presets-nav {
+    display: flex;
+    justify-items: center;
+    align-items: end;
+    align-items: center;
+    width: fit-content;
+    height: auto;
+}
+
+
 #input-flex {
     display: flex;
     flex-direction: column;
@@ -123,21 +139,21 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: inherit;
+    width: 100%;
 }
 
 .ruleSet-containerClass {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 #ruleSet-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .ruleSet-Style {
@@ -145,30 +161,43 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 0.5vh;
+    /*margin: 0.5vh;*/
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
 }
+
 .labels {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    width: 140px;
+    width: 3cm;
+    font-family: monospace;
+    font-size: medium;
+    font-weight: bold;
+    color: #efffe5;
 }
-.rules{
+
+.rules {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     width: 100%;
 }
 
+
 input {
+    font-family: monospace;
+    font-size: large;
     color: black;
+    font-weight: bold;
 }
 
 .add-new-person {
     text-decoration: none;
-    padding: 0.5vh 0.5vw;
+    padding: 0.5vw 0.6vw;
+    margin: 0.5vh;
     background: #1b6d85;
     border-radius: 2cm;
 }
@@ -199,47 +228,161 @@ svg {
 }
 
 
+.tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: large;
+    background: black;
+    width: 2rem;
+    border-radius: 50%;
+    cursor: help;
+}
+
+/*https://www.w3schools.com/css/css_tooltip.asp*/
+.tooltip .tooltiptext {
+    visibility: hidden;
+    padding: 1vh 2vw;
+    font-size: small;
+    background-color: black;
+    color: white;
+    text-align: left;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    position: absolute;
+    visibility: visible;
+    margin-right: 6.75cm;
+    width: 5.5cm;
+    height: fit-content;
+    padding: 0.4rem;
+    text-align: right;
+    text-shadow: black 0.1cm 0.1cm 0.1cm;
+    background: rgba(0, 0, 0, 0.68);
+
+}
+
+.input-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    justify-content: center;
+    height: 100%;
+    gap: 0.5cm;
+}
+
+.line-attributes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.color-attributes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: blue solid 1px;
+    width: 100%;
+
+}
+
+.color-attributes-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.1vh;
+}
+
+/*https://www.sliderrevolution.com/resources/css-dropdown-menu/*/
+
+/*https://codepen.io/anon/embed/pVvXmK?height=500&theme-id=1&slug-hash=pVvXmK&default-tab=result#result-box*/
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    font-family: monospace;
+}
+
+ul {
+    background: #091425;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+li {
+    color: #fff;
+    background: #0d51e1;
+    display: block;
+    float: left;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+
+li a {
+    color: #fff;
+}
+
+li:hover,
+li:focus-within {
+    background: red;
+    cursor: pointer;
+}
+
+li:focus-within a {
+    outline: none;
+}
+
+ul li ul {
+    background: #0051ff;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    width: 8rem;
+    max-height: 8rem;
+    overflow-y: scroll;
+    overflow-x: clip;
+}
+
+ul li ul li {
+    clear: both;
+    width: 100%;
+
+}
+
+
+/*TOOL TIP?*/
+/*http://jsfiddle.net/BumU5/3/*/
+
 /*DROP DOWN FROM
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
 */
 
-/*
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-*/
