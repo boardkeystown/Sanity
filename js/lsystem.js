@@ -349,6 +349,7 @@ const default_line_values = {
     angle: 0,
     rad: 0,
     counter: 0,
+    toggle: 0
 }
 
 let line_values = {
@@ -359,6 +360,7 @@ let line_values = {
     angle: default_line_values.angle,
     rad: default_line_values.rad,
     counter: default_line_values.counter,
+    toggle: 0
 }
 
 //Stack used for push and pop rules
@@ -427,8 +429,20 @@ function chooseColor() {
 function changeAngle(angle) {
     line_values.angle = (line_values.angle + angle) % 360
     line_values.rad = (Math.PI / 180.0) * line_values.angle
-    line_values.toggle = 1
 }
+
+function decrementAngle(angle) {
+    line_values.angle = line_values.angle - angle
+    line_values.rad = (Math.PI / 180.0) * line_values.angle
+}
+
+
+function incrementAngle(angle) {
+    line_values.angle = line_values.angle + angle
+    line_values.rad = (Math.PI / 180.0) * line_values.angle
+}
+
+
 
 function computeValues(distX, distY, angle) {
     //https://academo.org/demos/rotation-about-point/
@@ -493,8 +507,11 @@ function backward(d, a, c = 'black') {
     computeValues(-d, 0, a)
     drawLine(c);
 }
+//(	         Decrement turning angle by turning angle increment
+function decermentTurningAngle(d, a, c = 'black') {
 
-
+}
+//)	         Increment turning angle by turning angle increment
 
 
 function stackPush(d, dy, a, c = 'black') {
@@ -793,6 +810,7 @@ function resetLine() {
     line_values.angle = default_line_values.angle;
     line_values.rad = default_line_values.rad;
     line_values.counter = default_line_values.counter;
+    line_values.toggle = default_line_values.toggle;
 }
 
 function clearFormData(){
@@ -825,6 +843,35 @@ function makeFormItem(name,label,placeholder,dataValue) {
     return div
 }
 
+
+function makeFormItemNumericNatural(name,label,placeholder,dataValue) {
+    let div = document.createElement("div");
+    div.classList.add('ruleSet-containerClass');
+    div.innerHTML = `
+            <div class="ruleSet-Style">
+                <div class="labels">${label}:</div>
+                <div class="rules">
+                    <input type="number" min="1" name="${name}" placeholder="${placeholder}" value="${dataValue}">
+                </div>
+            </div>
+    `;
+    return div
+}
+
+function makeFormItemNumeric(name,label,placeholder,dataValue) {
+    let div = document.createElement("div");
+    div.classList.add('ruleSet-containerClass');
+    div.innerHTML = `
+            <div class="ruleSet-Style">
+                <div class="labels">${label}:</div>
+                <div class="rules">
+                    <input type="number" step="any" name="${name}" placeholder="${placeholder}" value="${dataValue}">
+                </div>
+            </div>
+    `;
+    return div
+}
+
 function makeFormItems(num,data) {
     let div = document.createElement("div");
     div.classList.add('ruleSet-Style');
@@ -845,8 +892,8 @@ function makeFormLengths(data) {
         <div class="ruleSet-Style">
             <div class="labels">Length:</div>
             <div class="rules">
-                <input type="number" name="lengthX" placeholder="X" value="${data.length[0]}">
-                <input type="number" name="lengthY" placeholder="Y" value="${data.length[1]}">
+                <input type="number" step="any" name="lengthX" placeholder="X" value="${data.length[0]}">
+                <input type="number" step="any" name="lengthY" placeholder="Y" value="${data.length[1]}">
             </div>
          </div>
     `;
@@ -867,11 +914,11 @@ function populateRuleset(data) {
     let formGuts = document.getElementById("input-form");
     let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
     let last = document.getElementById("add-rule");
-    divsOuter.insertBefore(makeFormItem("iterations","Iterations","Iterations",data.iterations),last);
+    divsOuter.insertBefore(makeFormItemNumericNatural("iterations","Iterations","Iterations",data.iterations),last);
     divsOuter.insertBefore(makeFormLengths(data),last);
     divsOuter.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
     divsOuter.insertBefore(makeFormItemNested(data),last);
-    divsOuter.insertBefore(makeFormItem("angle","Angle","Angle",data.angle),last);
+    divsOuter.insertBefore(makeFormItemNumeric("angle","Angle","Angle",data.angle),last);
 }
 
 
@@ -992,10 +1039,18 @@ function drawLsystem(instructions, angle, distanceX,distanceY) {
                 forward(distanceX, -distanceY, 0, chooseColor());
                 break;
             case '+':
-                changeAngle(-angle);
+                if (line_values.toggle==0) {
+                    changeAngle(-angle);
+                } else {
+                    changeAngle(angle);
+                }
                 break;
             case '-':
-                changeAngle(angle);
+                if (line_values.toggle==0) {
+                    changeAngle(angle);
+                } else {
+                    changeAngle(-angle);
+                }
                 break;
             case '[':
                 stackPush(0, 0, 0);
@@ -1009,6 +1064,16 @@ function drawLsystem(instructions, angle, distanceX,distanceY) {
             case '@':
                 // Draw a dot with line width radius
                 forwardDot(distanceX, -distanceY, angle, chooseColor())
+                break
+            case '(':
+                decrementAngle(angle);
+                break
+            case ')':
+                incrementAngle(angle);
+                break
+            case '&':
+                //Swap the meaning of + and -
+                line_values.toggle = (line_values.toggle==0) ? 1 : 0;
                 break
             default:
             //do nothing
