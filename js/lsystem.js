@@ -414,7 +414,7 @@ const colorList = {
     c_greens: ["#cbd356", "#879b60", "#70cf54"],
     c_green: ["#70cf54"],
     c_yelLi:["#93814d", "#c1c376","#daaf3a"],
-    c_reds:["#d90000", "#c4331f","#da3a3a"],
+    c_reds:["#801100", "#B62203","#D73502","#FC6400","#FF7500","#FAC000"],
 }
 let colors = colorList.c_yelLi
 
@@ -620,13 +620,13 @@ document.addEventListener('DOMContentLoaded', function() {
         getData(e.target);
     });
 
+
     //Color Preset Options
     colorSelection = document.getElementById("color-options");
     colorSelection.onchange = function () {
         let currentColors = document.getElementById("current-colors");
         let selectedIndex = colorSelection.selectedIndex;
         let choice = colorSelection.options[selectedIndex].value;
-
         let len = currentColors.children.length
         for (let i = 0; i < len; ++i) {
             currentColors.removeChild(currentColors.children[0]);
@@ -648,6 +648,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             case "c_greens":
                 addColorsFromList(currentColors,colorList.c_greens)
+                break;
+            case "c_reds":
+                addColorsFromList(currentColors,colorList.c_reds)
                 break;
             case "c_bigmix":
                 addColorsFromList(currentColors,colorList.c_bigmix)
