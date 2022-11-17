@@ -114,7 +114,7 @@ const replacementRules = {
     saupe_tree: {
         axiom: 'VZFFF',
         angle: 20,
-        length: 20,
+        length: [0,20],
         iterations: 12,
         rules: [
             {
@@ -142,7 +142,7 @@ const replacementRules = {
     alien_tree: {
         axiom: 'F',
         angle: 35,
-        length: 15,
+        length: [0,15],
         iterations: 5,
         rules: [
             {
@@ -151,7 +151,7 @@ const replacementRules = {
             }
         ]
     },
-    test_tree: {
+    the_mother_ship: {
         axiom: 'F',
         angle: 240,
         length: [0,20],
@@ -199,7 +199,7 @@ const replacementRules = {
             }
         ]
     },
-    test_thing: {
+    windmill: {
         axiom: 'F++F++F++F++F',
         angle: 36, //65 looks like DNA???
         length: [0,20],
@@ -327,7 +327,7 @@ const replacementRules = {
             }
         ]
     },
-    i_see_starts: {
+    i_see_stars: {
         axiom: 'F+F+F+F+F',
         angle: 72,
         length: [0,30],
@@ -400,7 +400,8 @@ function rules(char) {
 //https://mokole.com/palette.html
 //https://medialab.github.io/iwanthue/
 const colorList = {
-    c_rgb: ["red", "blue", "green"],
+    c_red: ["#ff0000"],
+    c_rgb: ["#ff0000", "#00ff00","#0100fa"],
     c_bigmix: ["#191970", "#006400", "#ff0000", "#ffd700", "#00ff00", "#00ffff", "#ff00ff", "#ffb6c1"],
     c_cb: ["#d3b324", "#836fe8", "#00824f", "#760013"],
     c_cb2: ["#0062c5", "#30eb96", "#d22a45", "#a58100"],
@@ -415,7 +416,6 @@ const colorList = {
     c_yelLi:["#93814d", "#c1c376","#daaf3a"],
     c_reds:["#d90000", "#c4331f","#da3a3a"],
 }
-
 let colors = colorList.c_yelLi
 
 function chooseColor() {
@@ -578,8 +578,8 @@ function getData(form) {
                     break;
                 default:
                     //Should never happen!
-                    console.log(pair[0] + ": " + pair[1]);
-                    console.log("AHHHHHHHHHHH!");
+                    // console.log(pair[0] + ": " + pair[1]);
+                    // console.log("AHHHHHHHHHHH!");
             }
         }
     }
@@ -593,16 +593,167 @@ function getData(form) {
     )
 }
 
+
+function makeInputColor(value) {
+    let newColorInput = document.createElement("input");
+    newColorInput.type = "color";
+    newColorInput.name = "color";
+    newColorInput.value = `${value}`;
+    return newColorInput;
+}
+
+function addColorsFromList(elem,colorListArray) {
+    for (let i = 0; i < colorListArray.length;++i){
+        elem.append(makeInputColor(colorListArray[i]));
+    }
+}
+
 //ON LOAD GET THE FORM TAG!
 let inputData = document.getElementById("input-form");
+let presetSelection = document.getElementById("preset-select-options");
+let colorSelection = document.getElementById("color-options");
+
 document.addEventListener('DOMContentLoaded', function() {
     inputData = document.getElementById("input-form")
     inputData.addEventListener("submit", function (e) {
         e.preventDefault();
         getData(e.target);
     });
+
+    //Color Preset Options
+    colorSelection = document.getElementById("color-options");
+    colorSelection.onchange = function () {
+        let currentColors = document.getElementById("current-colors");
+        let selectedIndex = colorSelection.selectedIndex;
+        let choice = colorSelection.options[selectedIndex].value;
+
+        let len = currentColors.children.length
+        for (let i = 0; i < len; ++i) {
+            currentColors.removeChild(currentColors.children[0]);
+        }
+        if ((typeof parseInt(choice,10)) === 'number') {
+            for (let i = 0; i < parseInt(choice,10); i++) {
+                currentColors.append(makeInputColor(colorList.c_red[0]));
+            }
+        }
+        switch (choice) {
+            case "default":
+                addColorsFromList(currentColors,colorList.c_yelLi)
+                break;
+            case "c_rgb":
+                addColorsFromList(currentColors,colorList.c_rgb)
+                break;
+            case "c_bigmix":
+                addColorsFromList(currentColors,colorList.c_bigmix)
+                break;
+            case "c_greens":
+                addColorsFromList(currentColors,colorList.c_greens)
+                break;
+            case "c_bigmix":
+                addColorsFromList(currentColors,colorList.c_bigmix)
+                break;
+            default:
+                break;
+        }
+
+    };
+
+    //Extra Presets Options
+    presetSelection = document.getElementById("preset-select-options");
+    presetSelection.onchange = function () {
+      let selectedIndex = presetSelection.selectedIndex;
+        // console.log(presetSelection.options[selectedIndex].value)
+        // console.log(presetSelection.options[selectedIndex].text)
+        switch (presetSelection.options[selectedIndex].value) {
+            case "saupe_tree":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.saupe_tree;
+                populateRuleset(fractal);
+                break;
+            case "alien_tree":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.test_tree;
+                populateRuleset(fractal);
+                break;
+            case "the_mother_ship":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.the_mother_ship;
+                populateRuleset(fractal);
+                break;
+            case "rings":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.rings;
+                populateRuleset(fractal);
+                break;
+            case "starish":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.starish;
+                populateRuleset(fractal);
+                break;
+            case "windmill":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.windmill;
+                populateRuleset(fractal);
+                break;
+            case "weed":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.weed;
+                populateRuleset(fractal);
+                break;
+            case "square_sierpinski":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.square_sierpinski;
+                populateRuleset(fractal);
+                break;
+            case "Classic_Sierpinski_Curve_dot":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.Classic_Sierpinski_Curve_dot;
+                populateRuleset(fractal);
+                break;
+            case "Quadratic_Koch_Island":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.Quadratic_Koch_Island;
+                populateRuleset(fractal);
+                break;
+            case "Board":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.Board;
+                populateRuleset(fractal);
+                break;
+            case "flying_fish_winds":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.flying_fish_winds;
+                populateRuleset(fractal);
+                break;
+            case "i_see_stars":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.i_see_stars;
+                populateRuleset(fractal);
+                break;
+            default:
+                //do nothing
+        }
+    };
+
+    //Add Rule Set Button
     document.getElementById('add-rule').onclick = addRule;
 }, false);
+
+
+
 
 let ruleIndex = 2;
 function addRule () {

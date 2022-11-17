@@ -38,48 +38,49 @@
             <button onclick="loadPreset(4)">Koch</button>
             <button onclick="loadPreset(5)">Classic Sierpinski Curve</button>
             <button onclick="loadPreset(6)">Snowflake</button>
-            <nav id="presets-nav">
-                <ul>
-                    <li><a href="javascript:;" aria-haspopup="true">More</a>
-                        <ul class="dropdown" aria-label="submenu">
-                            <li><a href="#">Sub-1</a></li>
-                            <li><a href="#">Sub-2</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                            <li><a href="#">Sub-3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <select id="preset-select-options">
+                <option value="none">...</option>
+                <option value="saupe_tree">Saupe Tree</option>
+                <option value="alien_tree">Alien Tree</option>
+                <option value="the_mother_ship">The Mother Ship</option>
+                <option value="rings">Rings</option>
+                <option value="starish">Starish</option>
+                <option value="windmill">Windmill</option>
+                <option value="weed">Weed</option>
+                <option value="square_sierpinski">Square Sierpinski</option>
+                <option value="Classic_Sierpinski_Curve_dot">Classic Sierpinski Curve 'dots'</option>
+                <option value="Quadratic_Koch_Island">Quadratic Koch Island</option>
+                <option value="Board">Board</option>
+                <option value="flying_fish_winds">Flying Fish Winds</option>
+                <option value="i_see_stars">I See Stars</option>
+            </select>
         </div>
         <div id="input-flex">
             <form id="input-form" onsubmit="dummy();return false" autocomplete="off">
                 <div class="input-form-container">
                     <div class="color-attributes">
                         <div class="color-attributes-items">
-                            <nav>
-                                <ul>
-                                    <li><a href="javascript:;" aria-haspopup="true">Color Presets</a>
-                                        <ul class="dropdown" aria-label="submenu">
-                                            <li><a href="#">placeholder-1</a></li>
-                                            <li><a href="#">placeholder-2</a></li>
-                                            <li><a href="#">placeholder-3</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <select id="color-options">
+                                <option value="default">Default Colors</option>
+                                <optgroup label="Basic">
+                                    <option value="5">5-Colors</option>
+                                    <option value="4">4-Colors</option>
+                                    <option value="3">3-Colors</option>
+                                    <option value="2">2-Colors</option>
+                                    <option value="1">1-Color</option>
+                                </optgroup>
+                                <optgroup label="Color Pallets">
+                                    <option value="c_rgb">RGB</option>
+                                    <option value="c_greens">Grass</option>
+                                    <option value="c_reds">Fire</option>
+                                    <option value="c_bigmix">Big Mix</option>
+                                </optgroup>
+                            </select>
                         </div>
                         <div class="color-attributes-items" id="current-colors">
                             <input type="color" name="color" value="#93814d">
                             <input type="color" name="color" value="#c1c376">
                             <input type="color" name="color" value="#daaf3a">
-                        </div>
-                        <div class="color-attributes-items">
-                            <a href="javascript:;" id="add-color" class="add-new-person">Add Color</a>
-                            <a href="javascript:;" id="remove-color" class="add-new-person">Remove Last</a>
                         </div>
                     </div>
                     <div class="line-attributes">

@@ -105,6 +105,7 @@ body {
     justify-content: center;
     gap: 0.1cm;
     border: 0.1cm solid #000000;
+    flex-wrap: wrap;
 }
 
 #presets button {
@@ -290,7 +291,7 @@ svg {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border: blue solid 1px;
+    border: 0.1cm solid #000000;
     width: 100%;
 
 }
@@ -302,6 +303,33 @@ svg {
     flex-wrap: wrap;
     gap: 0.1vh;
 }
+
+#preset-select-options {
+    color: black;
+    width: auto;
+    text-align: left;
+}
+
+#preset-select-options option {
+    color: black;
+}
+
+#color-options {
+    color: black;
+}
+#color-options option {
+    color: black;
+}
+#color-options optgroup {
+    color: black;
+}
+
+
+
+
+
+
+
 
 /*https://www.sliderrevolution.com/resources/css-dropdown-menu/*/
 
