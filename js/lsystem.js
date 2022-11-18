@@ -338,6 +338,30 @@ const replacementRules = {
                 rule: 'F++F++F+++++F-F++F'
             }
         ]
+    },
+    sure_is_something: {
+        axiom: 'F+F+F+F',
+        angle: 123123.123123,
+        length: [1,1],
+        iterations: 5,
+        rules: [
+            {
+                char: 'F',
+                rule: '(FF+F+F+F|FF&'
+            }
+        ]
+    },
+    creepy_crawly: {
+        axiom: 'F+F-F+F-F',
+        angle: 12.90,
+        length: [0,10],
+        iterations: 4,
+        rules: [
+            {
+                char: 'F',
+                rule: '[[F]+F]&F-FF'
+            }
+        ]
     }
 }
 
@@ -417,6 +441,11 @@ const colorList = {
     c_green: ["#70cf54"],
     c_yelLi:["#93814d", "#c1c376","#daaf3a"],
     c_reds:["#801100", "#B62203","#D73502","#FC6400","#FF7500","#FAC000"],
+    c_aqua:["#0f5e9c","#2389da","#1ca3ec","#5abcd8","#74ccf4"],
+    c_corsairs :["#3B4F8C","#A5B3CE","#F9AD16"],
+    c_golden :["#A5782B","#C99738","#F4D362","#FCF8B8","#E3C56D"],
+    c_sliver :["#aaa9ad","#b8b7ba","#c6c5c8","#e2e2e3","#f0f0f1","#ffffff"],
+    c_earth :["#9D5F38","#D19C4C","#25963E","#10C135"],
 }
 let colors = colorList.c_yelLi
 
@@ -539,6 +568,9 @@ function stackPop(d, dy, a, c = 'black') {
 
 //Generate the L-SYSTEM, run, submit
 function getData(form) {
+    //scroll to top of page after submit
+    window.scrollTo({ top: 100, behavior: 'smooth' });
+
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
     let formData = new FormData(form);
     // iterate through entries...
@@ -637,7 +669,6 @@ document.addEventListener('DOMContentLoaded', function() {
         getData(e.target);
     });
 
-
     //Color Preset Options
     colorSelection = document.getElementById("color-options");
     colorSelection.onchange = function () {
@@ -650,27 +681,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if ((typeof parseInt(choice,10)) === 'number') {
             for (let i = 0; i < parseInt(choice,10); i++) {
-                currentColors.append(makeInputColor(colorList.c_red[0]));
+                currentColors.append(makeInputColor("#ffffff"));
             }
         }
         switch (choice) {
             case "default":
-                addColorsFromList(currentColors,colorList.c_yelLi)
+                addColorsFromList(currentColors,colorList.c_yelLi);
                 break;
             case "c_rgb":
-                addColorsFromList(currentColors,colorList.c_rgb)
+                addColorsFromList(currentColors,colorList.c_rgb);
                 break;
             case "c_bigmix":
-                addColorsFromList(currentColors,colorList.c_bigmix)
+                addColorsFromList(currentColors,colorList.c_bigmix);
                 break;
             case "c_greens":
-                addColorsFromList(currentColors,colorList.c_greens)
+                addColorsFromList(currentColors,colorList.c_greens);
                 break;
             case "c_reds":
-                addColorsFromList(currentColors,colorList.c_reds)
+                addColorsFromList(currentColors,colorList.c_reds);
                 break;
             case "c_bigmix":
-                addColorsFromList(currentColors,colorList.c_bigmix)
+                addColorsFromList(currentColors,colorList.c_bigmix);
+                break;
+            case "c_aqua":
+                addColorsFromList(currentColors,colorList.c_aqua);
+                break;
+            case "c_corsairs":
+                addColorsFromList(currentColors,colorList.c_corsairs);
+                break;
+            case "c_cb":
+                addColorsFromList(currentColors,colorList.c_cb);
+                break;
+            case "c_golden":
+                addColorsFromList(currentColors,colorList.c_golden);
+                break;
+            case "c_sliver":
+                addColorsFromList(currentColors,colorList.c_sliver);
+                break;
+            case "c_earth":
+                addColorsFromList(currentColors,colorList.c_earth);
                 break;
             default:
                 break;
@@ -694,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case "alien_tree":
                 clearCurrentSVG();
                 clearFormData();
-                fractal = replacementRules.test_tree;
+                fractal = replacementRules.alien_tree;
                 populateRuleset(fractal);
                 break;
             case "the_mother_ship":
@@ -763,6 +812,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 fractal = replacementRules.i_see_stars;
                 populateRuleset(fractal);
                 break;
+            case "sure_is_something":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.sure_is_something;
+                populateRuleset(fractal);
+                break;
+            case "creepy_crawly":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.creepy_crawly;
+                populateRuleset(fractal);
+                break;
             default:
                 //do nothing
         }
@@ -770,15 +831,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Add Rule Set Button
     document.getElementById('add-rule').onclick = addRule;
+
+    //Remove Rule Set Button
+    document.getElementById('remove-rule').onclick = removeRule;
 }, false);
 
-
-
-
-let ruleIndex = 2;
+let ruleIndex = 1;
 function addRule () {
     let template = `
-        <div class="labels">Rule Set ${ruleIndex}:</div>
+        <div class="labels">Rule Set ${++ruleIndex}:</div>
         <div class="rules">
             <input type="text" id="char" name="rules[${ruleIndex}][char]" placeholder="Char">
             <input type="text" id="rule" name="rules[${ruleIndex}][rule]" placeholder="Rule">
@@ -787,7 +848,6 @@ function addRule () {
             <span class="tooltiptext">Identity (1 letter) -><br>Production rules (letters)</span>
         </div>
     `;
-
     let container = document.getElementById('ruleSet-container');
     // console.log(container)
     let div = document.createElement("div");
@@ -795,7 +855,14 @@ function addRule () {
     // console.log(div)
     div.innerHTML = template;
     container.appendChild(div);
-    ruleIndex++;
+}
+
+function removeRule () {
+    //Do nothing since we must have at least 1 rule!
+    if (ruleIndex===1) return;
+    let container = document.getElementById('ruleSet-container');
+    container.lastChild.remove();
+    --ruleIndex;
 }
 
 function dummy() {
@@ -814,8 +881,9 @@ function resetLine() {
 }
 
 function clearFormData(){
+
     let formGuts = document.getElementById("input-form");
-    // console.log(formGuts)
+
     let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
     //Remove class stuff
     let divs = divsOuter.getElementsByClassName("ruleSet-containerClass");
@@ -829,7 +897,7 @@ function clearFormData(){
 }
 
 
-function makeFormItem(name,label,placeholder,dataValue) {
+function makeFormItem(name,label,placeholder,dataValue,toolTip='') {
     let div = document.createElement("div");
     div.classList.add('ruleSet-containerClass');
     div.innerHTML = `
@@ -840,6 +908,7 @@ function makeFormItem(name,label,placeholder,dataValue) {
                 </div>
             </div>
     `;
+    div.getElementsByClassName("ruleSet-Style")[0].append(toolTip)
     return div
 }
 
@@ -853,12 +922,16 @@ function makeFormItemNumericNatural(name,label,placeholder,dataValue) {
                 <div class="rules">
                     <input type="number" min="1" name="${name}" placeholder="${placeholder}" value="${dataValue}">
                 </div>
+                <div class="tooltip">
+                    ?<span class="tooltiptext">Number of iterations to run</span>
+                </div>
             </div>
     `;
+
     return div
 }
 
-function makeFormItemNumeric(name,label,placeholder,dataValue) {
+function makeFormItemNumeric(name,label,placeholder,dataValue,toolTip="") {
     let div = document.createElement("div");
     div.classList.add('ruleSet-containerClass');
     div.innerHTML = `
@@ -869,6 +942,7 @@ function makeFormItemNumeric(name,label,placeholder,dataValue) {
                 </div>
             </div>
     `;
+    div.getElementsByClassName("ruleSet-Style")[0].append(toolTip)
     return div
 }
 
@@ -882,6 +956,7 @@ function makeFormItems(num,data) {
             <input type="text" id="rule" name="rules[${num}][rule]" placeholder="Rule" value="${data.rule}">
         </div>
     `;
+    div.append(makeToolTip('Identity (1 letter) -><br><br>Production rules (letters)'))
     return div
 }
 
@@ -895,6 +970,9 @@ function makeFormLengths(data) {
                 <input type="number" step="any" name="lengthX" placeholder="X" value="${data.length[0]}">
                 <input type="number" step="any" name="lengthY" placeholder="Y" value="${data.length[1]}">
             </div>
+                 <div class="tooltip"> ?
+                    <span class="tooltiptext">X displacement length<br><br>Y displacement length</span>
+                </div>
          </div>
     `;
     return div
@@ -904,21 +982,39 @@ function makeFormLengths(data) {
 function makeFormItemNested(data) {
     let div = document.createElement("div");
     div.setAttribute("id",'ruleSet-container');
+    ruleIndex = 0;
     for (let i = 0; i < data.rules.length; i++) {
-        div.append(makeFormItems(i+1,data.rules[i]))
+        div.append(makeFormItems(++ruleIndex,data.rules[i]))
     }
+    console.log(ruleIndex)
+
     return div;
 }
+
+function makeToolTip(text) {
+    let div = document.createElement('div');
+    div.setAttribute('class','tooltip');
+    div.innerHTML = `?<span class="tooltiptext">${text}</span>`;
+    return div;
+}
+
 
 function populateRuleset(data) {
     let formGuts = document.getElementById("input-form");
     let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
-    let last = document.getElementById("add-rule");
+    let lineControlLabel =  document.getElementById("line-control-label");
+
+    lineControlLabel.after(makeFormLengths(data));
+
+    let last = document.getElementById("ruleSet-container-btns");
+
     divsOuter.insertBefore(makeFormItemNumericNatural("iterations","Iterations","Iterations",data.iterations),last);
-    divsOuter.insertBefore(makeFormLengths(data),last);
-    divsOuter.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom),last);
+
+    divsOuter.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom,makeToolTip('Start (letters)')),last);
+
     divsOuter.insertBefore(makeFormItemNested(data),last);
-    divsOuter.insertBefore(makeFormItemNumeric("angle","Angle","Angle",data.angle),last);
+
+    divsOuter.append(makeFormItemNumeric("angle","Angle","Angle",data.angle,makeToolTip('Angle of rotation (degrees)')));
 }
 
 
@@ -931,8 +1027,6 @@ function clearCurrentSVG() {
     svg.selectAll("g").remove();
     g = svg.append('g');
     stack.length = 0;
-    //reset the rule index
-    ruleIndex=2
 }
 
 function loadPreset(preset) {
@@ -1173,3 +1267,6 @@ function saveSVG() {
     document.body.removeChild(downloadLink);
 }
 
+
+// https://spin.atomicobject.com/2014/01/21/convert-svg-to-png/
+//TODO: CONVERT SVG TO PNG???? Cringe

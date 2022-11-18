@@ -31,7 +31,6 @@
     </div>
     <div id="toolbox">
         <div id="presets">
-            Presets:
             <button onclick="loadPreset(1)">Dragon Curve</button>
             <button onclick="loadPreset(2)">Triangle</button>
             <button onclick="loadPreset(3)">Simple Tree</button>
@@ -39,7 +38,7 @@
             <button onclick="loadPreset(5)">Classic Sierpinski Curve</button>
             <button onclick="loadPreset(6)">Snowflake</button>
             <select id="preset-select-options">
-                <option value="none">...</option>
+                <option value="none" style="text-align: center">Preset Options</option>
                 <option value="saupe_tree">Saupe Tree</option>
                 <option value="alien_tree">Alien Tree</option>
                 <option value="the_mother_ship">The Mother Ship</option>
@@ -53,37 +52,68 @@
                 <option value="Board">Board</option>
                 <option value="flying_fish_winds">Flying Fish Winds</option>
                 <option value="i_see_stars">I See Stars</option>
+                <option value="sure_is_something">It's Alive!</option>
+                <option value="creepy_crawly">Creepy Crawly</option>
             </select>
         </div>
         <div id="input-flex">
             <form id="input-form" onsubmit="dummy();return false" autocomplete="off">
+
                 <div class="input-form-container">
+
                     <div class="color-attributes">
-                        <div class="color-attributes-items">
+
+                        <div class="color-attributes-column">
                             <select id="color-options">
                                 <option value="default">Default Colors</option>
                                 <optgroup label="Basic">
-                                    <option value="5">5-Colors</option>
-                                    <option value="4">4-Colors</option>
-                                    <option value="3">3-Colors</option>
-                                    <option value="2">2-Colors</option>
                                     <option value="1">1-Color</option>
+                                    <option value="2">2-Colors</option>
+                                    <option value="3">3-Colors</option>
+                                    <option value="4">4-Colors</option>
+                                    <option value="5">5-Colors</option>
                                 </optgroup>
                                 <optgroup label="Color Pallets">
                                     <option value="c_rgb">RGB</option>
-                                    <option value="c_greens">Grass</option>
                                     <option value="c_reds">Fire</option>
-                                    <option value="c_bigmix">Big Mix</option>
+                                    <option value="c_greens">Grass</option>
+                                    <option value="c_aqua">Aqua</option>
+                                    <option value="c_corsairs">Corsairs</option>
+                                    <option value="c_golden">Golden</option>
+                                    <option value="c_sliver">Sliver</option>
+                                    <option value="c_earth">Earthen</option>
+                                    <option value="c_cb">Distinct Mix</option>
+                                    <option value="c_bigmix">Party Mix</option>
                                 </optgroup>
                             </select>
                         </div>
+
                         <div class="color-attributes-items" id="current-colors">
                             <input type="color" name="color" value="#93814d">
                             <input type="color" name="color" value="#c1c376">
                             <input type="color" name="color" value="#daaf3a">
                         </div>
                     </div>
+
                     <div class="line-attributes">
+
+                        <div id="line-control-label" class="top-label">Line Control</div>
+
+                        <div class="ruleSet-containerClass">
+                            <div class="ruleSet-Style">
+                                <div class="labels">Length:</div>
+                                <div class="rules">
+                                    <input type="number" step="any"  name="lengthX" placeholder="X" value="0">
+                                    <input type="number" step="any"  name="lengthY" placeholder="Y" value="20">
+                                </div>
+                                <div class="tooltip"> ?
+                                    <span class="tooltiptext">X displacement length<br><br>Y displacement length</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="l-system-rules-label" class="top-label">L-System Rules</div>
+
                         <div class="ruleSet-containerClass">
                             <div class="ruleSet-Style">
                                 <div class="labels">
@@ -97,18 +127,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ruleSet-containerClass">
-                            <div class="ruleSet-Style">
-                                <div class="labels">Length:</div>
-                                <div class="rules">
-                                    <input type="number" step="any"  name="lengthX" placeholder="X" value="0">
-                                    <input type="number" step="any"  name="lengthY" placeholder="Y" value="20">
-                                </div>
-                                <div class="tooltip"> ?
-                                    <span class="tooltiptext">X displacement length<br>Y displacement length</span>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="ruleSet-containerClass">
                             <div class="ruleSet-Style">
                                 <div class="labels">Axiom:</div>
@@ -120,6 +139,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div id="ruleSet-container">
                             <div class="ruleSet-Style">
                                 <div class="labels">Rule Set 1:</div>
@@ -128,10 +148,16 @@
                                     <input type="text" id="rule" name="rules[1][rule]" placeholder="Rule" value="F-F+F">
                                 </div>
                                 <div class="tooltip"> ?
-                                    <span class="tooltiptext">Identity (1 letter) -><br>Production rules (letters)</span>
+                                    <span class="tooltiptext">Identity (1 letter) -><br><br>Production rules (letters)</span>
                                 </div>
                             </div>
                         </div>
+
+                        <div id="ruleSet-container-btns">
+                            <a href="javascript:;" id="add-rule" class="add-new-ruleset">&nbsp;&nbsp;+&nbsp;&nbsp;</a>
+                            <a href="javascript:;" id="remove-rule" class="add-new-ruleset">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+                        </div>
+
                         <div class="ruleSet-containerClass">
                             <div class="ruleSet-Style">
                                 <div class="labels">Angle:</div>
@@ -143,10 +169,12 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:;" id="add-rule" class="add-new-person">Add Extra Rule Set</a>
+
                     </div>
 
+
                 </div>
+
                 <input type="submit" class="submit-style" value="Generate">
             </form>
         </div>
