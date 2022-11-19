@@ -1,7 +1,7 @@
 # Sanity
 
-A Simple L-System Viewer
+A Simple Generator And L-System Viewer
 
-![Alt text](assets/home/1.png)
+[Checkout Sanity!](https://boardkeystown.github.io/Sanity/)
 
-[Checkout the website!](https://boardkeystown.github.io/Sanity/)
+![Alt text](/assets/global/readme.png)
