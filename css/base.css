@@ -28,6 +28,7 @@ body {
             4px 4px 1px rgb(127, 255, 0),
             4px 4px 1px rgb(0, 0, 0),
             5px 5px 12px rgb(0, 0, 0);
+    cursor: context-menu;
 
 }
 

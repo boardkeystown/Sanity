@@ -1,4 +1,5 @@
 .viscode
 .idea
 output/mySVG.svg
+output/*
 note.txt
