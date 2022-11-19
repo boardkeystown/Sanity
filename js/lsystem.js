@@ -3,8 +3,6 @@
 * Alphabet based on the characters as defined
 * by the L-System Manual
 * http://paulbourke.net/fractals/lsys/
-*
-*
 * */
 
 //**********************************************************************************************************************
@@ -38,7 +36,7 @@ const replacementRules = {
     dragon_curve: {
         axiom: 'F',
         angle: 90,
-        length: [20,0],
+        length: [20, 0],
         iterations: 15,
         rules: [
             {
@@ -54,7 +52,7 @@ const replacementRules = {
     triangle: {
         axiom: 'F+F+F',
         angle: 120,
-        length: [0,20],
+        length: [0, 20],
         iterations: 8,
         rules: [
             {
@@ -66,7 +64,7 @@ const replacementRules = {
     simple_tree: {
         axiom: 'X',
         angle: 22.5,
-        length: [0,12],
+        length: [0, 12],
         iterations: 6,
         rules: [
             {
@@ -114,7 +112,7 @@ const replacementRules = {
     saupe_tree: {
         axiom: 'VZFFF',
         angle: 20,
-        length: [0,20],
+        length: [0, 20],
         iterations: 12,
         rules: [
             {
@@ -142,7 +140,7 @@ const replacementRules = {
     alien_tree: {
         axiom: 'F',
         angle: 35,
-        length: [0,15],
+        length: [0, 15],
         iterations: 5,
         rules: [
             {
@@ -154,7 +152,7 @@ const replacementRules = {
     the_mother_ship: {
         axiom: 'F',
         angle: 240,
-        length: [0,20],
+        length: [0, 20],
         iterations: 5,
         rules: [
             {
@@ -166,7 +164,7 @@ const replacementRules = {
     snow_flake: {
         axiom: 'F++F++F++F++F',
         angle: 36,
-        length: [0,30],
+        length: [0, 30],
         iterations: 4,
         rules: [
             {
@@ -178,7 +176,7 @@ const replacementRules = {
     rings: {
         axiom: 'F++F++F++F++F',
         angle: 61,
-        length: [0,20],
+        length: [0, 20],
         iterations: 4,
         rules: [
             {
@@ -190,7 +188,7 @@ const replacementRules = {
     starish: {
         axiom: 'F++F++F++F++F',
         angle: 66, //65 looks like DNA???
-        length: [0,20],
+        length: [0, 20],
         iterations: 4,
         rules: [
             {
@@ -202,7 +200,7 @@ const replacementRules = {
     windmill: {
         axiom: 'F++F++F++F++F',
         angle: 36, //65 looks like DNA???
-        length: [0,20],
+        length: [0, 20],
         iterations: 5,
         rules: [
             {
@@ -222,7 +220,7 @@ const replacementRules = {
     weed: {
         axiom: 'F',
         angle: 22.5,
-        length: [0,20],
+        length: [0, 20],
         iterations: 6,
         rules: [
             {
@@ -241,8 +239,8 @@ const replacementRules = {
     },
     square_sierpinski: {
         axiom: 'F+XF+F+XF',
-        angle:  90,
-        length: [0,20],
+        angle: 90,
+        length: [0, 20],
         iterations: 6,
         rules: [
             {
@@ -253,8 +251,8 @@ const replacementRules = {
     },
     Quadratic_Koch_Island: {
         axiom: 'F+F+F+F',
-        angle:  90,
-        length: [0,10],
+        angle: 90,
+        length: [0, 10],
         iterations: 2,
         rules: [
             {
@@ -265,8 +263,8 @@ const replacementRules = {
     },
     Board: {
         axiom: 'F+F+F+F',
-        angle:  90, //90,271
-        length: [0,15],
+        angle: 90, //90,271
+        length: [0, 15],
         iterations: 3,
         rules: [
             {
@@ -277,9 +275,9 @@ const replacementRules = {
     },
     Koch: {
         axiom: 'F++F++F',
-        angle:  60,
-        length: [0,15],
-        iterations:4,
+        angle: 60,
+        length: [0, 15],
+        iterations: 4,
         rules: [
             {
                 char: 'F',
@@ -289,9 +287,9 @@ const replacementRules = {
     },
     Classic_Sierpinski_Curve: {
         axiom: 'F--XF--F--XF',
-        angle:  45,
-        length: [0,15],
-        iterations:5,
+        angle: 45,
+        length: [0, 15],
+        iterations: 5,
         rules: [
             {
                 char: 'X',
@@ -301,9 +299,9 @@ const replacementRules = {
     },
     Classic_Sierpinski_Curve_dot: {
         axiom: '@--X@--@--X@',
-        angle:  45,
-        length: [0,15],
-        iterations:5,
+        angle: 45,
+        length: [0, 15],
+        iterations: 5,
         rules: [
             {
                 char: 'X',
@@ -314,7 +312,7 @@ const replacementRules = {
     flying_fish_winds: {
         axiom: 'F++F++F++F++F',
         angle: 36,
-        length: [0,30],
+        length: [0, 30],
         iterations: 4,
         rules: [
             {
@@ -330,7 +328,7 @@ const replacementRules = {
     i_see_stars: {
         axiom: 'F+F+F+F+F',
         angle: 72,
-        length: [0,30],
+        length: [0, 30],
         iterations: 4,
         rules: [
             {
@@ -342,7 +340,7 @@ const replacementRules = {
     sure_is_something: {
         axiom: 'F+F+F+F',
         angle: 123123.123123,
-        length: [1,1],
+        length: [1, 1],
         iterations: 5,
         rules: [
             {
@@ -354,7 +352,7 @@ const replacementRules = {
     creepy_crawly: {
         axiom: 'F+F-F+F-F',
         angle: 12.90,
-        length: [0,10],
+        length: [0, 10],
         iterations: 4,
         rules: [
             {
@@ -427,7 +425,7 @@ function rules(char) {
 //https://medialab.github.io/iwanthue/
 const colorList = {
     c_red: ["#ff0000"],
-    c_rgb: ["#ff0000", "#00ff00","#0100fa"],
+    c_rgb: ["#ff0000", "#00ff00", "#0100fa"],
     c_bigmix: ["#191970", "#006400", "#ff0000", "#ffd700", "#00ff00", "#00ffff", "#ff00ff", "#ffb6c1"],
     c_cb: ["#d3b324", "#836fe8", "#00824f", "#760013"],
     c_cb2: ["#0062c5", "#30eb96", "#d22a45", "#a58100"],
@@ -439,13 +437,13 @@ const colorList = {
     c_cb8: ["#171c86", "#853f00", "#ca1747"],
     c_greens: ["#cbd356", "#879b60", "#70cf54"],
     c_green: ["#70cf54"],
-    c_yelLi:["#93814d", "#c1c376","#daaf3a"],
-    c_reds:["#801100", "#B62203","#D73502","#FC6400","#FF7500","#FAC000"],
-    c_aqua:["#0f5e9c","#2389da","#1ca3ec","#5abcd8","#74ccf4"],
-    c_corsairs :["#3B4F8C","#A5B3CE","#F9AD16"],
-    c_golden :["#A5782B","#C99738","#F4D362","#FCF8B8","#E3C56D"],
-    c_sliver :["#aaa9ad","#b8b7ba","#c6c5c8","#e2e2e3","#f0f0f1","#ffffff"],
-    c_earth :["#9D5F38","#D19C4C","#25963E","#10C135"],
+    c_yelLi: ["#93814d", "#c1c376", "#daaf3a"],
+    c_reds: ["#801100", "#B62203", "#D73502", "#FC6400", "#FF7500", "#FAC000"],
+    c_aqua: ["#0f5e9c", "#2389da", "#1ca3ec", "#5abcd8", "#74ccf4"],
+    c_corsairs: ["#3B4F8C", "#A5B3CE", "#F9AD16"],
+    c_golden: ["#A5782B", "#C99738", "#F4D362", "#FCF8B8", "#E3C56D"],
+    c_sliver: ["#aaa9ad", "#b8b7ba", "#c6c5c8", "#e2e2e3", "#f0f0f1", "#ffffff"],
+    c_earth: ["#9D5F38", "#D19C4C", "#25963E", "#10C135"],
 }
 let colors = colorList.c_yelLi
 
@@ -470,7 +468,6 @@ function incrementAngle(angle) {
     line_values.angle = line_values.angle + angle
     line_values.rad = (Math.PI / 180.0) * line_values.angle
 }
-
 
 
 function computeValues(distX, distY, angle) {
@@ -506,16 +503,15 @@ function drawLine(c = 'black') {
         .attr("stroke-linecap", "round")
 }
 
-
-function drawCircle(d,dy,c = 'black') {
+function drawCircle(d, dy, c = 'black') {
     let cc = c;
     let dd = (d > 0) ? d : (dy > 0) ? dy : 5;
     g.append('circle')
-        .style("stroke",`${cc}`)
+        .style("stroke", `${cc}`)
         .style("fill", `${cc}`)
         .attr("cx", line_values.x2)
         .attr("cy", line_values.y2)
-        .attr("r", dd*1/8)
+        .attr("r", dd * 1 / 8)
 }
 
 function forward(d, dy, a, c = 'black') {
@@ -525,7 +521,7 @@ function forward(d, dy, a, c = 'black') {
 
 function forwardDot(d, dy, a, c = 'black') {
     computeValues(d, dy, a)
-    drawCircle(d,dy,c);
+    drawCircle(d, dy, c);
 }
 
 function move(d, dy, a, c = 'black') {
@@ -536,12 +532,6 @@ function backward(d, a, c = 'black') {
     computeValues(-d, 0, a)
     drawLine(c);
 }
-//(	         Decrement turning angle by turning angle increment
-function decermentTurningAngle(d, a, c = 'black') {
-
-}
-//)	         Increment turning angle by turning angle increment
-
 
 function stackPush(d, dy, a, c = 'black') {
     //[
@@ -568,8 +558,9 @@ function stackPop(d, dy, a, c = 'black') {
 
 //Generate the L-SYSTEM, run, submit
 function getData(form) {
+
     //scroll to top of page after submit
-    window.scrollTo({ top: 100, behavior: 'smooth' });
+    window.scrollTo({top: 100, behavior: 'smooth'});
 
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
     let formData = new FormData(form);
@@ -578,14 +569,13 @@ function getData(form) {
     //     console.log(pair[0] + ": " + pair[1]);
     // }
     // console.log(Object.fromEntries(formData));
-    // = text.replace(/^\s+|\s+$/gm,'')
     // console.log(Object.fromEntries(formData));
-    let user_lsys =  {
-            axiom: '',
-            angle: 0,
-            length: [0,20],
-            iterations:0,
-            rules: [],
+    let user_lsys = {
+        axiom: '',
+        angle: 0,
+        length: [0, 20],
+        iterations: 0,
+        rules: [],
     }
     let rule = {
         char: "",
@@ -596,7 +586,7 @@ function getData(form) {
     const re2 = new RegExp('(rules)\\[\\d+\\]\\[rule\\]');
     for (let pair of formData.entries()) {
         // console.log(pair[0] + ": " + pair[1]);
-        pair[1]=pair[1].replace(/^\s+|\s+$/gm,'');
+        pair[1] = pair[1].replace(/^\s+|\s+$/gm, '');
         let str = pair[0]
 
         if (re1.test(pair[0])) {
@@ -604,8 +594,7 @@ function getData(form) {
         } else if (re2.test(pair[0])) {
             rule.rule = pair[1];
             user_lsys.rules.push(Object.assign({}, rule));
-        }
-        else {
+        } else {
             switch (str) {
                 case "axiom":
                     user_lsys.axiom = pair[1];
@@ -614,21 +603,21 @@ function getData(form) {
                     user_lsys.angle = parseFloat(pair[1]);
                     break;
                 case "lengthX":
-                    user_lsys.length[0] = parseInt(pair[1],10);
+                    user_lsys.length[0] = parseInt(pair[1], 10);
                     break;
                 case "lengthY":
-                    user_lsys.length[1] = parseInt(pair[1],10);
+                    user_lsys.length[1] = parseInt(pair[1], 10);
                     break;
                 case "iterations":
-                    user_lsys.iterations =  parseInt(pair[1],10);
+                    user_lsys.iterations = parseInt(pair[1], 10);
                     break;
                 case 'color':
                     user_color.push(pair[1]);
                     break;
                 default:
-                    //Should never happen!
-                    // console.log(pair[0] + ": " + pair[1]);
-                    // console.log("AHHHHHHHHHHH!");
+                //Should never happen!
+                // console.log(pair[0] + ": " + pair[1]);
+                // console.log("AHHHHHHHHHHH!");
             }
         }
     }
@@ -637,7 +626,7 @@ function getData(form) {
     fractal = user_lsys;
     Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then(d => {
             clearCurrentSVG();
-            drawLsystem(d[0], fractal.angle,...fractal.length);
+            drawLsystem(d[0], fractal.angle, ...fractal.length);
         }
     )
 }
@@ -651,8 +640,8 @@ function makeInputColor(value) {
     return newColorInput;
 }
 
-function addColorsFromList(elem,colorListArray) {
-    for (let i = 0; i < colorListArray.length;++i){
+function addColorsFromList(elem, colorListArray) {
+    for (let i = 0; i < colorListArray.length; ++i) {
         elem.append(makeInputColor(colorListArray[i]));
     }
 }
@@ -662,7 +651,7 @@ let inputData = document.getElementById("input-form");
 let presetSelection = document.getElementById("preset-select-options");
 let colorSelection = document.getElementById("color-options");
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     inputData = document.getElementById("input-form")
     inputData.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -679,47 +668,47 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < len; ++i) {
             currentColors.removeChild(currentColors.children[0]);
         }
-        if ((typeof parseInt(choice,10)) === 'number') {
-            for (let i = 0; i < parseInt(choice,10); i++) {
+        if ((typeof parseInt(choice, 10)) === 'number') {
+            for (let i = 0; i < parseInt(choice, 10); i++) {
                 currentColors.append(makeInputColor("#ffffff"));
             }
         }
         switch (choice) {
             case "default":
-                addColorsFromList(currentColors,colorList.c_yelLi);
+                addColorsFromList(currentColors, colorList.c_yelLi);
                 break;
             case "c_rgb":
-                addColorsFromList(currentColors,colorList.c_rgb);
+                addColorsFromList(currentColors, colorList.c_rgb);
                 break;
             case "c_bigmix":
-                addColorsFromList(currentColors,colorList.c_bigmix);
+                addColorsFromList(currentColors, colorList.c_bigmix);
                 break;
             case "c_greens":
-                addColorsFromList(currentColors,colorList.c_greens);
+                addColorsFromList(currentColors, colorList.c_greens);
                 break;
             case "c_reds":
-                addColorsFromList(currentColors,colorList.c_reds);
+                addColorsFromList(currentColors, colorList.c_reds);
                 break;
             case "c_bigmix":
-                addColorsFromList(currentColors,colorList.c_bigmix);
+                addColorsFromList(currentColors, colorList.c_bigmix);
                 break;
             case "c_aqua":
-                addColorsFromList(currentColors,colorList.c_aqua);
+                addColorsFromList(currentColors, colorList.c_aqua);
                 break;
             case "c_corsairs":
-                addColorsFromList(currentColors,colorList.c_corsairs);
+                addColorsFromList(currentColors, colorList.c_corsairs);
                 break;
             case "c_cb":
-                addColorsFromList(currentColors,colorList.c_cb);
+                addColorsFromList(currentColors, colorList.c_cb);
                 break;
             case "c_golden":
-                addColorsFromList(currentColors,colorList.c_golden);
+                addColorsFromList(currentColors, colorList.c_golden);
                 break;
             case "c_sliver":
-                addColorsFromList(currentColors,colorList.c_sliver);
+                addColorsFromList(currentColors, colorList.c_sliver);
                 break;
             case "c_earth":
-                addColorsFromList(currentColors,colorList.c_earth);
+                addColorsFromList(currentColors, colorList.c_earth);
                 break;
             default:
                 break;
@@ -730,9 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Extra Presets Options
     presetSelection = document.getElementById("preset-select-options");
     presetSelection.onchange = function () {
-      let selectedIndex = presetSelection.selectedIndex;
-        // console.log(presetSelection.options[selectedIndex].value)
-        // console.log(presetSelection.options[selectedIndex].text)
+        let selectedIndex = presetSelection.selectedIndex;
         switch (presetSelection.options[selectedIndex].value) {
             case "saupe_tree":
                 clearCurrentSVG();
@@ -825,7 +812,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 populateRuleset(fractal);
                 break;
             default:
-                //do nothing
+            //do nothing
         }
     };
 
@@ -837,7 +824,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 let ruleIndex = 1;
-function addRule () {
+
+function addRule() {
     let template = `
         <div class="labels">Rule Set ${++ruleIndex}:</div>
         <div class="rules">
@@ -857,9 +845,9 @@ function addRule () {
     container.appendChild(div);
 }
 
-function removeRule () {
+function removeRule() {
     //Do nothing since we must have at least 1 rule!
-    if (ruleIndex===1) return;
+    if (ruleIndex === 1) return;
     let container = document.getElementById('ruleSet-container');
     container.lastChild.remove();
     --ruleIndex;
@@ -880,7 +868,7 @@ function resetLine() {
     line_values.toggle = default_line_values.toggle;
 }
 
-function clearFormData(){
+function clearFormData() {
 
     let formGuts = document.getElementById("input-form");
 
@@ -897,7 +885,7 @@ function clearFormData(){
 }
 
 
-function makeFormItem(name,label,placeholder,dataValue,toolTip='') {
+function makeFormItem(name, label, placeholder, dataValue, toolTip = '') {
     let div = document.createElement("div");
     div.classList.add('ruleSet-containerClass');
     div.innerHTML = `
@@ -913,7 +901,7 @@ function makeFormItem(name,label,placeholder,dataValue,toolTip='') {
 }
 
 
-function makeFormItemNumericNatural(name,label,placeholder,dataValue) {
+function makeFormItemNumericNatural(name, label, placeholder, dataValue) {
     let div = document.createElement("div");
     div.classList.add('ruleSet-containerClass');
     div.innerHTML = `
@@ -931,7 +919,7 @@ function makeFormItemNumericNatural(name,label,placeholder,dataValue) {
     return div
 }
 
-function makeFormItemNumeric(name,label,placeholder,dataValue,toolTip="") {
+function makeFormItemNumeric(name, label, placeholder, dataValue, toolTip = "") {
     let div = document.createElement("div");
     div.classList.add('ruleSet-containerClass');
     div.innerHTML = `
@@ -946,7 +934,7 @@ function makeFormItemNumeric(name,label,placeholder,dataValue,toolTip="") {
     return div
 }
 
-function makeFormItems(num,data) {
+function makeFormItems(num, data) {
     let div = document.createElement("div");
     div.classList.add('ruleSet-Style');
     div.innerHTML = `
@@ -981,10 +969,10 @@ function makeFormLengths(data) {
 
 function makeFormItemNested(data) {
     let div = document.createElement("div");
-    div.setAttribute("id",'ruleSet-container');
+    div.setAttribute("id", 'ruleSet-container');
     ruleIndex = 0;
     for (let i = 0; i < data.rules.length; i++) {
-        div.append(makeFormItems(++ruleIndex,data.rules[i]))
+        div.append(makeFormItems(++ruleIndex, data.rules[i]))
     }
     console.log(ruleIndex)
 
@@ -993,7 +981,7 @@ function makeFormItemNested(data) {
 
 function makeToolTip(text) {
     let div = document.createElement('div');
-    div.setAttribute('class','tooltip');
+    div.setAttribute('class', 'tooltip');
     div.innerHTML = `?<span class="tooltiptext">${text}</span>`;
     return div;
 }
@@ -1002,19 +990,19 @@ function makeToolTip(text) {
 function populateRuleset(data) {
     let formGuts = document.getElementById("input-form");
     let divsOuter = formGuts.getElementsByClassName("line-attributes")[0];
-    let lineControlLabel =  document.getElementById("line-control-label");
+    let lineControlLabel = document.getElementById("line-control-label");
 
     lineControlLabel.after(makeFormLengths(data));
 
     let last = document.getElementById("ruleSet-container-btns");
 
-    divsOuter.insertBefore(makeFormItemNumericNatural("iterations","Iterations","Iterations",data.iterations),last);
+    divsOuter.insertBefore(makeFormItemNumericNatural("iterations", "Iterations", "Iterations", data.iterations), last);
 
-    divsOuter.insertBefore(makeFormItem("axiom","Axiom","Axiom",data.axiom,makeToolTip('Start (letters)')),last);
+    divsOuter.insertBefore(makeFormItem("axiom", "Axiom", "Axiom", data.axiom, makeToolTip('Start (letters)')), last);
 
-    divsOuter.insertBefore(makeFormItemNested(data),last);
+    divsOuter.insertBefore(makeFormItemNested(data), last);
 
-    divsOuter.append(makeFormItemNumeric("angle","Angle","Angle",data.angle,makeToolTip('Angle of rotation (degrees)')));
+    divsOuter.append(makeFormItemNumeric("angle", "Angle", "Angle", data.angle, makeToolTip('Angle of rotation (degrees)')));
 }
 
 
@@ -1090,32 +1078,32 @@ function loadPreset(preset) {
 }
 
 function debug() {
-    forward(-20,-20,0,chooseColor());
-    forward(-20,0,0,chooseColor());
-    forward(-20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
+    forward(-20, -20, 0, chooseColor());
+    forward(-20, 0, 0, chooseColor());
+    forward(-20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
     changeAngle(90)
-    forward(20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
+    forward(20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
     changeAngle(90)
-    forward(20,0,0,chooseColor());
+    forward(20, 0, 0, chooseColor());
     changeAngle(90)
-    forward(20,0,0,chooseColor());
+    forward(20, 0, 0, chooseColor());
     changeAngle(90)
-    forward(20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
-    forward(20,0,0,chooseColor());
+    forward(20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
+    forward(20, 0, 0, chooseColor());
     changeAngle(-90)
-    forward(20,0,0,chooseColor());
-    forwardDot(20,0,0,chooseColor())
-    forwardDot(20,0,0,chooseColor())
-    forwardDot(20,0,0,chooseColor())
-    forwardDot(20,0,0,chooseColor())
+    forward(20, 0, 0, chooseColor());
+    forwardDot(20, 0, 0, chooseColor())
+    forwardDot(20, 0, 0, chooseColor())
+    forwardDot(20, 0, 0, chooseColor())
+    forwardDot(20, 0, 0, chooseColor())
 }
 
-function drawLsystem(instructions, angle, distanceX,distanceY) {
+function drawLsystem(instructions, angle, distanceX, distanceY) {
     // //Debug Tests
     // debug()
     // return
@@ -1133,14 +1121,14 @@ function drawLsystem(instructions, angle, distanceX,distanceY) {
                 forward(distanceX, -distanceY, 0, chooseColor());
                 break;
             case '+':
-                if (line_values.toggle==0) {
+                if (line_values.toggle == 0) {
                     changeAngle(-angle);
                 } else {
                     changeAngle(angle);
                 }
                 break;
             case '-':
-                if (line_values.toggle==0) {
+                if (line_values.toggle == 0) {
                     changeAngle(angle);
                 } else {
                     changeAngle(-angle);
@@ -1167,7 +1155,7 @@ function drawLsystem(instructions, angle, distanceX,distanceY) {
                 break
             case '&':
                 //Swap the meaning of + and -
-                line_values.toggle = (line_values.toggle==0) ? 1 : 0;
+                line_values.toggle = (line_values.toggle == 0) ? 1 : 0;
                 break
             default:
             //do nothing
@@ -1176,16 +1164,15 @@ function drawLsystem(instructions, angle, distanceX,distanceY) {
 }
 
 Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then((lsys) => {
-    drawLsystem(lsys[0], fractal.angle,...fractal.length);
+    drawLsystem(lsys[0], fractal.angle, ...fractal.length);
 });
 
 // https://mathjs.org/docs/datatypes/matrices.html
-//https://stackoverflow.com/questions/2259476/rotating-a-point-about-another-point-2d
-//https://www.d3indepth.com/zoom-and-pan/
-//https://calculateaspectratio.com/
-
+// https://stackoverflow.com/questions/2259476/rotating-a-point-about-another-point-2d
+// https://www.d3indepth.com/zoom-and-pan/
+// https://calculateaspectratio.com/
 // https://stackoverflow.com/questions/42907047/d3-v4-ajust-zoom-to-center
-//TODO: should be a way to center the zoom
+// TODO: should be a better way to center the zoom
 
 let zoom = d3.zoom()
     .scaleExtent([0, Infinity])
@@ -1232,12 +1219,11 @@ function resetZoom() {
 }
 
 function center() {
-    zoom.transform(svg,d3.zoomIdentity);
-
-     // svg.selectAll('g')
-     //    .transition()
-     //    .call(zoom.translateTo, 0.5 * window_dims.width, 0.5 * window_dims.height);
-     //    // .call(zoom.translateTo, window_dims.wincw, window_dims.winch);
+    zoom.transform(svg, d3.zoomIdentity);
+    // svg.selectAll('g')
+    //    .transition()
+    //    .call(zoom.translateTo, 0.5 * window_dims.width, 0.5 * window_dims.height);
+    //    // .call(zoom.translateTo, window_dims.wincw, window_dims.winch);
 }
 
 function panLeft() {
@@ -1266,8 +1252,6 @@ function saveSVG() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
-
-
 
 
 /*
@@ -1375,6 +1359,5 @@ function savePNG() {
         });
     };
     svgToPng(svgData, margin,fill);
-
 }
 */

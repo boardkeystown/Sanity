@@ -2,6 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: aliceblue;
 }
+
 body {
     /*Pretty Hexagon Background*/
     /*https://www.makeuseof.com/css-background-patterns-examples/*/
@@ -15,15 +16,62 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%239C92AC' fill-opacity='0.25' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right top, #343a40, #2b2c31, #211f22, #151314, #000000);
 }
 
-#site-name {
+#site-name,.site-name-nav {
     font-weight: bolder;
-    font-size: xxx-large !important;
-    color: #0080ff;
-    text-shadow:
-                 2px 1px 8px #43ff00,
-                 2px 1px 12px #c7c0c0,
-                 2px 1px 8px black;
+    font-size: 80px;
+    font-family: sans-serif;
+    color: #1160a8;
+    letter-spacing: 10px;
     padding: 1rem;
+    text-shadow:
+            2px 2px 1px rgb(238, 246, 254),
+            4px 4px 1px rgb(127, 255, 0),
+            4px 4px 1px rgb(0, 0, 0),
+            5px 5px 12px rgb(0, 0, 0);
+
+}
+
+.site-name-nav {
+    font-size: xxx-large;
+    letter-spacing: 3px;
+}
+
+
+
+.site-name-nav:hover,#site-name:hover {
+    --interval: 1s;
+    text-shadow:
+            0 0 10px #63abf3,
+            0 0 10px yellow,
+            0 0 10px green,
+            0 0 10px #63abf3;
+    will-change: filter, color;
+    filter: saturate(60%);
+    animation: flicker steps(100) 1000ms 100ms infinite;
+}
+
+
+
+/*Glowing sign
+https://codepen.io/erikjung/pen/XdWEKE
+*/
+.x-sign {
+    --interval: 1s;
+    display: block;
+    text-shadow:
+            0 0 10px #63abf3,
+            0 0 10px yellow,
+            0 0 10px green,
+            0 0 10px #63abf3;
+    will-change: filter, color;
+    filter: saturate(60%);
+    animation: flicker steps(100) 10s 10s infinite;
+}
+@keyframes flicker {
+    50% {
+        color: white;
+        filter: saturate(200%) hue-rotate(20deg);
+    }
 }
 
 
@@ -35,9 +83,12 @@ html::-webkit-scrollbar {
 html::-webkit-scrollbar-thumb {
     background: #434343;
     border-radius: 16px;
-    box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25),inset -2px -2px 2px rgba(0,0,0,.25)
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25), inset -2px -2px 2px rgba(0, 0, 0, .25)
 }
 
 html::-webkit-scrollbar-track {
-    background: linear-gradient(90deg,#434343,#434343 1px,#111 0,#111)
+    background: linear-gradient(90deg, #434343, #434343 1px, #111 0, #111)
 }
+
+
+
