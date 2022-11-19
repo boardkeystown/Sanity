@@ -16,8 +16,28 @@ body {
 }
 
 #site-name {
-    font-size: xxx-large;
-    color: #63abf3;
-    text-shadow: 2px 1px 8px black;
+    font-weight: bolder;
+    font-size: xxx-large !important;
+    color: #0080ff;
+    text-shadow:
+                 2px 1px 8px #43ff00,
+                 2px 1px 12px #c7c0c0,
+                 2px 1px 8px black;
+    padding: 1rem;
 }
 
+
+html::-webkit-scrollbar {
+    width: 16px;
+    height: 16px
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #434343;
+    border-radius: 16px;
+    box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25),inset -2px -2px 2px rgba(0,0,0,.25)
+}
+
+html::-webkit-scrollbar-track {
+    background: linear-gradient(90deg,#434343,#434343 1px,#111 0,#111)
+}

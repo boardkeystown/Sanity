@@ -12,11 +12,24 @@
     align-items: center;
     flex-direction: column;
     padding: 2vw 2vh;
-    width: inherit;
     /*margin: 0;*/
     margin-top: 1vh;
     margin-bottom: 1vh;
     background: #2b2c31;
+    width: 80vw;
+}
+
+.home-navbar-title-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-navbar-title-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: x-large;
 }
 
 #home-navbar ul {
@@ -32,64 +45,72 @@
     font-size: xx-large;
 }
 
-
 #home-content {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: stretch;
+    justify-content: center;
     flex-direction: row;
-    width: inherit;
+    flex-wrap: nowrap;
+    width: 80vw;
 }
 
 #home-buttons {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 30%;
-    height: 100%;
-    gap: 1.5vh;
+    justify-content: space-around;
+    width: 10cm;
 }
 
 #home-buttons a {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    background: #63abf3;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.2cm;
-    font-size: xx-large;
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: xxx-large;
+    text-align: center;
+    padding: 0.3cm;
+    border-radius: 0.5cm;
+    margin-top: 1cm;
+    background: #1161a8;
 }
 
 #home-buttons a:hover {
-    background: #1161a8;
+    background-color: #63abf3;
+}
+
+#home-buttons a {
+    box-shadow: black 0 3px 5px 2px;
 }
 
 #slideshow {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100%;
+}
+
+.slideshow-image {
+    /*http://jsfiddle.net/xwrvxser/1/*/
+    height: 80%;
+    width: 100%
 }
 
 #slideshow-image {
-    display: flex;
-    align-items: flex-start;
     max-width: 100%;
     max-height: 100%;
 }
 
 #btnBox {
     display: flex;
-    width: 100%;
-    height: 100%;
 }
 #btnBox button {
-    flex-grow: 1;
     background: #1b6d85;
+}
+
+.btn-left,.btn-right {
+    z-index: 23;
 }
 
 

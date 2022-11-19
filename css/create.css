@@ -32,14 +32,14 @@ body {
 }
 
 #navbar .nav-btn-bg {
-    background: #1b6d85;
     border-radius: 1vw;
     padding: 0.05cm;
+    background: #1161a8;
     box-shadow: black 4px 4px 4px;
 }
 
 #navbar .nav-btn-bg:hover {
-    padding: 0.08cm;
+    background-color: #63abf3;
     text-shadow: #000000 1px 1px 3px;
     box-shadow: black 8px 8px 8px;
 }
