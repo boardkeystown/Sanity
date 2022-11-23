@@ -913,7 +913,7 @@ function makeFormItem(name, label, placeholder, dataValue, toolTip = '') {
             <div class="ruleSet-Style">
                 <div class="labels">${label}:</div>
                 <div class="rules">
-                    <input type="text" name="${name}" placeholder="${placeholder}" value="${dataValue}">
+                    <input type="text" name="${name}" placeholder="${placeholder}"  value="${dataValue}">
                 </div>
             </div>
     `;
@@ -929,7 +929,7 @@ function makeFormItemNumericNatural(name, label, placeholder, dataValue) {
             <div class="ruleSet-Style">
                 <div class="labels">${label}:</div>
                 <div class="rules">
-                    <input type="number" min="1" name="${name}" placeholder="${placeholder}" value="${dataValue}">
+                    <input type="number" min="1" name="${name}" placeholder="${placeholder}" required value="${dataValue}">
                 </div>
                 <div class="tooltip">
                     ?<span class="tooltiptext">Number of iterations to run</span>
@@ -947,7 +947,7 @@ function makeFormItemNumeric(name, label, placeholder, dataValue, toolTip = "") 
             <div class="ruleSet-Style">
                 <div class="labels">${label}:</div>
                 <div class="rules">
-                    <input type="number" step="any" name="${name}" placeholder="${placeholder}" value="${dataValue}">
+                    <input type="number" step="any" name="${name}" placeholder="${placeholder}" required value="${dataValue}">
                 </div>
             </div>
     `;
@@ -992,11 +992,9 @@ function makeFormItemNested(data) {
     let div = document.createElement("div");
     div.setAttribute("id", 'ruleSet-container');
     ruleIndex = 0;
-    for (let i = 0; i < data.rules.length; i++) {
+    for (let i = 0; i < data.rules.length; ++i) {
         div.append(makeFormItems(++ruleIndex, data.rules[i]))
     }
-    // console.log(ruleIndex)
-
     return div;
 }
 
@@ -1307,6 +1305,7 @@ function btnClick() {
 
 
 function getOrigPos(elemt) {
+    /*-50 amd -300 hard coded to center relative to help button icon*/
     origPos.y = elemt.offsetTop-50;
     origPos.x = elemt.offsetLeft-300;
 }
@@ -1320,7 +1319,7 @@ function resetElement(elmnt) {
 
 function dragElement(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
+    /*X- is used to turn this off since we do not want the dove to move outside of view*/
     if (document.getElementById(elmnt.id + "X-header")) {
         /* if present, the header is where you move the DIV from:*/
         document.getElementById(elmnt.id + "X-header").onmousedown = dragMouseDown;
