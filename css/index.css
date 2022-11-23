@@ -141,7 +141,6 @@
 }
 
 div#captioned-gallery {
-    width: 100%;
     overflow: hidden;
     height: auto;
 }

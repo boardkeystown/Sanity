@@ -15,8 +15,9 @@ body {
 #navbar {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row;
+    flex-wrap: wrap;
     padding: 2vw 2vh;
     width: inherit;
     margin-top: 1vh;
@@ -28,12 +29,12 @@ body {
     text-decoration: none;
     list-style-type: none;
     color: aliceblue;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 #navbar .nav-btn-bg {
-    border-radius: 1vw;
-    padding: 0.05cm;
+    border-radius: 0.5cm;
+    padding: 0.15cm;
     background: #1161a8;
     box-shadow: black 4px 4px 4px;
 }
@@ -197,10 +198,89 @@ body {
     justify-content: center;
     font-family: monospace;
     font-weight: bolder;
-    width: 3cm;
+    font-size: x-large;
+    width: 4.5cm;
     color: white;
 }
 
+
+#help-icon-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #000000;
+    font-family: monospace;
+    padding: 0.09cm;
+}
+
+#l-system-rules-label {
+    display: flex;
+    flex-direction: row;
+}
+
+#help-icon-btn:hover,#help-icon-btn:active {
+    cursor: pointer;
+}
+
+/*floating div icon*/
+#floating-div {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    background-color: rgba(43, 43, 44, 0.90);
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    resize: both;
+    overflow: auto;
+}
+#floating-div-header {
+    cursor: move;
+    z-index: 10;
+    background-color: #2b2c32;
+    border: 0.01cm solid black;
+}
+
+#header-text {
+    height: fit-content;
+    font-size: x-large;
+    font-family: monospace
+}
+
+#close-btn {
+    float: right;
+    display: inline-block;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: x-large;
+    width: 0.9cm;
+    background-color: black;
+}
+
+#floating-div-content {
+    text-wrap: unset;
+    word-break: keep-all;
+    padding: 0.25cm;
+}
+
+.floating-div-content-lines {
+    display: flex;
+    flex-wrap: nowrap;
+    word-break: keep-all;
+    color: #d8ae3b;
+    text-align: left;
+    font-family: monospace;
+    font-weight: bolder;
+}
+
+.floating-div-content-lines:nth-child(even) {
+    background-color: rgba(43, 43, 44, 0.25);
+}
+.floating-div-content-lines:nth-child(odd) {
+    background-color: rgba(43, 43, 44, 0.25);
+}
 
 .rules {
     display: flex;
@@ -248,11 +328,15 @@ body {
     background: #518c12;
 }
 
-
-svg {
+.svg-style {
     border: 0.02cm solid chartreuse;
     background: rgba(0, 0, 0, 1);
 }
+
+/*svg {*/
+/*    border: 0.02cm solid chartreuse;*/
+/*    background: rgba(0, 0, 0, 1);*/
+/*}*/
 
 
 .tooltip {

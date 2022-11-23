@@ -646,12 +646,33 @@ function addColorsFromList(elem, colorListArray) {
     }
 }
 
+
+window.onresize = function () {
+    getOrigPos(document.getElementById("help-icon-btn"));
+    document.getElementById("floating-div").style.display = "none";
+    resetToggle = 0;
+}
+
+
 //ON LOAD GET THE FORM TAG!
 let inputData = document.getElementById("input-form");
 let presetSelection = document.getElementById("preset-select-options");
 let colorSelection = document.getElementById("color-options");
+let buttonClick = "";
+let closeClick = "";
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    //get floating div
+    dragElement(document.getElementById("floating-div"))
+
+    //set load buttons
+    buttonClick = document.getElementById("help-icon-btn").addEventListener("click", btnClick)
+    closeClick = document.getElementById("close-btn").addEventListener("click", btnCLOSE)
+    getOrigPos(document.getElementById("help-icon-btn"))
+    document.getElementById("floating-div").style.display = "none";
+
+
     inputData = document.getElementById("input-form")
     inputData.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -974,7 +995,7 @@ function makeFormItemNested(data) {
     for (let i = 0; i < data.rules.length; i++) {
         div.append(makeFormItems(++ruleIndex, data.rules[i]))
     }
-    console.log(ruleIndex)
+    // console.log(ruleIndex)
 
     return div;
 }
@@ -1184,6 +1205,7 @@ let svg = d3.select("#container").append("svg")
     // .attr("height", `${vb_size.height}`)
     .attr("id", "container-svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("class","svg-style")
     .classed("svg-content", true);
 
 let g = svg.append('g');
@@ -1254,8 +1276,112 @@ function saveSVG() {
 }
 
 
+
+/*MOVABLE DIV*/
+let resetToggle = 0;
+let isOriginalPositionCaptured = false;
+let origPos = {
+    x: 0,
+    y: 0,
+}
+
+
+
+function btnCLOSE() {
+    resetElement(document.getElementById("floating-div"))
+    document.getElementById("floating-div").style.display = "none"
+    resetToggle = 0;
+}
+
+function btnClick() {
+    if (resetToggle === 0) {
+        resetToggle = 1;
+        resetElement(document.getElementById("floating-div"))
+        document.getElementById("floating-div").style.display = "block"
+    } else {
+        resetElement(document.getElementById("floating-div"))
+        document.getElementById("floating-div").style.display = "none"
+        resetToggle = 0;
+    }
+}
+
+
+function getOrigPos(elemt) {
+    origPos.y = elemt.offsetTop-50;
+    origPos.x = elemt.offsetLeft-300;
+}
+
+
+function resetElement(elmnt) {
+    elmnt.style.top = origPos.y + "px";
+    elmnt.style.left = origPos.x + "px";
+}
+
+
+function dragElement(elmnt) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    if (document.getElementById(elmnt.id + "X-header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id + "X-header").onmousedown = dragMouseDown;
+    } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
+    }
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+
+        if (isOriginalPositionCaptured === false) {
+            isOriginalPositionCaptured = true;
+            // origPos.y = elmnt.offsetTop;
+            // origPos.x = elmnt.offsetLeft;
+            getOrigPos(document.getElementById("help-icon-btn"))
+
+        }
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
-//TODO: CONVERT SVG TO PNG???? Cringe
+//TODO: Cringe CONVERT SVG TO PNG???? NO. SVG is better.
 //https://ramblings.mcpher.com/gassnippets2/converting-svg-to-png-with-javascript/
 //https://stackoverflow.com/questions/7620509/how-does-one-get-the-height-width-of-an-svg-group-element
 function savePNG() {

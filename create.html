@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SANITY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
     <link rel="icon" type="image/png" href="./assets/global/favcon-32X32.png">
     <link rel="stylesheet" type="text/css" href="./css/base.css"/>
     <link rel="stylesheet" type="text/css" href="./css/create.css"/>
@@ -60,9 +61,7 @@
             <form id="input-form" onsubmit="dummy();return false" autocomplete="off">
 
                 <div class="input-form-container">
-
                     <div class="color-attributes">
-
                         <div class="color-attributes-column">
                             <select id="color-options">
                                 <option value="default">Default Colors</option>
@@ -112,7 +111,41 @@
                             </div>
                         </div>
 
-                        <div id="l-system-rules-label" class="top-label">L-System Rules</div>
+
+                        <div id="l-system-rules-label">
+                            <div class="top-label">L-System Rules</div>
+                            <div><a href="javascript:;" id="help-icon-btn">[?]</a></div>
+
+                            <div id="floating-div">
+                                <div id="floating-div-header">
+                                    <a id="close-btn" href="javascript:;">X</a>
+                                    <div id="header-text">Reference</div>
+                                </div>
+                                <div id="floating-div-content">
+                                    <div class="floating-div-content-lines">  F    Move forward by line length drawing a line</div>
+                                    <div class="floating-div-content-lines">  G    Move forward by line length drawing a line</div>
+                                    <div class="floating-div-content-lines">  f      Move forward by line length without drawing a line</div>
+                                    <div class="floating-div-content-lines">  +      Turn left by turning angle</div>
+                                    <div class="floating-div-content-lines">  -      Turn right by turning angle</div>
+                                    <div class="floating-div-content-lines">  |      Reverse direction (ie: turn by 180 degrees)</div>
+                                    <div class="floating-div-content-lines">  [      Push current drawing state onto stack</div>
+                                    <div class="floating-div-content-lines">  ]      Pop current drawing state from the stack</div>
+<!--                                    <div class="floating-div-content-lines">  #      Increment the line width by line width increment</div>-->
+<!--                                    <div class="floating-div-content-lines">  !      Decrement the line width by line width increment</div>-->
+                                    <div class="floating-div-content-lines">  @      Draw a dot with line width radius</div>
+<!--                                    <div class="floating-div-content-lines">  {      Open a polygon</div>-->
+<!--                                    <div class="floating-div-content-lines">  }      Close a polygon and fill it with fill colour</div>-->
+<!--                                    <div class="floating-div-content-lines">  &gt;      Multiply the line length by the line length scale factor</div>-->
+<!--                                    <div class="floating-div-content-lines">  &lt;      Divide the line length by the line length scale factor</div>-->
+                                    <div class="floating-div-content-lines">  &amp;      Swap the meaning of + and -</div>
+                                    <div class="floating-div-content-lines">  (      Decrement turning angle by turning angle increment</div>
+                                    <div class="floating-div-content-lines">  )      Increment turning angle by turning angle increment</div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
 
                         <div class="ruleSet-containerClass">
                             <div class="ruleSet-Style">
