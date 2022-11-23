@@ -445,6 +445,7 @@ body {
     color: black;
     width: auto;
     text-align: left;
+    height: 2em;
 }
 
 #preset-select-options option {
@@ -452,6 +453,7 @@ body {
 }
 
 #color-options {
+    height: 2em;
     color: black;
 }
 #color-options option {
@@ -460,6 +462,14 @@ body {
 #color-options optgroup {
     color: black;
 }
+
+input[type=color] {
+    height: 2em;
+    width: 4em;
+}
+
+
+
 
 
 /*TOOL TIP?*/
