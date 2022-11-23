@@ -1,0 +1,66 @@
+/* Default (light) colors scheme */
+:root {
+    color-scheme: light dark;
+    --main-color: #404244;
+    --link-color: #17a81a;
+    --main-color-alt: #26282a;
+    --main-bg-color: #f3f3f4;
+    --content-bg-color: #fff;
+    --content-active-color: #eee;
+    --content-border-color: #eee;
+    --content-bg-color-alt: #f9f9f9;
+    --header-color: #090e21;
+    --header-bg-color: rgba(255, 255, 255, 0.1);
+    --highlight-anim-color: #d1e8f6;
+    --admonition-note-color: rgba(197, 211, 244, 1.0);
+    --admonition-warning-color: rgba(255, 228, 228, 1.0);
+    --admonition-important-color: rgba(246, 203, 151, 1.0);
+}
+
+/* theme toggle */
+@font-face {
+    font-family: 'themes';
+    src: url('/style/themes.woff?pc2g5') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class="theme-icon"] {
+    font-family: 'themes' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    display: inline-block;
+}
+.theme-switch input {
+    display: none;
+}
+.theme-icon {
+    cursor: pointer;
+    font-size: 18px;
+}
+.theme-icon::before {
+    color: var(--header-color);
+    content: "\f186";
+    transition: 0.2s;
+}
+.theme-icon:hover {
+    transition: 0.2s;
+    opacity: .5;
+}
+input:checked + .theme-icon::before {
+    content: "\f185";
+}
