@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SANITY</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta name="viewport" content="width=device-width, initial-scale=0.65">
     <link rel="icon" type="image/png" href="./assets/global/favcon-32X32.png">
     <link rel="stylesheet" type="text/css" href="./css/base.css"/>
     <link rel="stylesheet" type="text/css" href="./css/create.css"/>
@@ -40,21 +40,36 @@
             <button onclick="loadPreset(6)">Snowflake</button>
             <select id="preset-select-options">
                 <option value="none" style="text-align: center">Preset Options</option>
-                <option value="saupe_tree">Saupe Tree</option>
-                <option value="alien_tree">Alien Tree</option>
-                <option value="the_mother_ship">The Mother Ship</option>
-                <option value="rings">Rings</option>
-                <option value="starish">Starish</option>
-                <option value="windmill">Windmill</option>
-                <option value="weed">Weed</option>
-                <option value="square_sierpinski">Square Sierpinski</option>
-                <option value="Classic_Sierpinski_Curve_dot">Classic Sierpinski Curve 'dots'</option>
-                <option value="Quadratic_Koch_Island">Quadratic Koch Island</option>
-                <option value="Board">Board</option>
-                <option value="flying_fish_winds">Flying Fish Winds</option>
-                <option value="i_see_stars">I See Stars</option>
-                <option value="sure_is_something">It's Alive!</option>
-                <option value="creepy_crawly">Creepy Crawly</option>
+                <optgroup label="L-System Classics">
+                    <option value="square_siepinski">Square Sierpinski</option>
+                    <option value="Sierpinski_triangle">Sierpinski Triangle</option>
+                    <option value="sierpinski_arrowhead_curve">Sierpinski Arrowhead Curve</option>
+                    <option value="hexagonal_gosper">Hexagonal Gosper</option>
+                    <option value="quadratic_gosper">Quadratic Gosper</option>
+                    <option value="Quadratic_Koch_Island">Quadratic Koch Island</option>
+                    <option value="peano_curve">Peano Curve</option>
+                    <option value="hilbert">Hilbert</option>
+                    <option value="Board">Board</option>
+                    <option value="Classic_Sierpinski_Curve_dot">Classic Sierpinski Curve 'dots'</option>
+                </optgroup>
+                <optgroup label="Natural / Organic">
+                    <option value="saupe_tree">Saupe Tree</option>
+                    <option value="alien_tree">Alien Tree</option>
+                    <option value="weed">Weed</option>
+                    <option value="creepy_crawly">Creepy Crawly</option>
+                    <option value="sure_is_something">It's Alive!</option>
+                    <option value="boardkeys_tree">Boardkeys Tree</option>
+                    <option value="boardkeys_fallen_branches">Boardkeys fallen branches</option>
+                    <option value="water_sprouts">Water Sprouts</option>
+                </optgroup>
+                <optgroup label="Other">
+                    <option value="the_mother_ship">The Mother Ship</option>
+                    <option value="rings">Rings</option>
+                    <option value="starish">Starish</option>
+                    <option value="windmill">Windmill</option>
+                    <option value="flying_fish_winds">Flying Fish Winds</option>
+                    <option value="i_see_stars">I See Stars</option>
+                </optgroup>
             </select>
         </div>
         <div id="input-flex">
@@ -122,24 +137,39 @@
                                     <div id="header-text">Reference</div>
                                 </div>
                                 <div id="floating-div-content">
-                                    <div class="floating-div-content-lines">  F    Move forward by line length drawing a line</div>
-                                    <div class="floating-div-content-lines">  G    Move forward by line length drawing a line</div>
-                                    <div class="floating-div-content-lines">  f      Move forward by line length without drawing a line</div>
-                                    <div class="floating-div-content-lines">  +      Turn left by turning angle</div>
-                                    <div class="floating-div-content-lines">  -      Turn right by turning angle</div>
-                                    <div class="floating-div-content-lines">  |      Reverse direction (ie: turn by 180 degrees)</div>
-                                    <div class="floating-div-content-lines">  [      Push current drawing state onto stack</div>
-                                    <div class="floating-div-content-lines">  ]      Pop current drawing state from the stack</div>
-<!--                                    <div class="floating-div-content-lines">  #      Increment the line width by line width increment</div>-->
-<!--                                    <div class="floating-div-content-lines">  !      Decrement the line width by line width increment</div>-->
-                                    <div class="floating-div-content-lines">  @      Draw a dot with line width radius</div>
-<!--                                    <div class="floating-div-content-lines">  {      Open a polygon</div>-->
-<!--                                    <div class="floating-div-content-lines">  }      Close a polygon and fill it with fill colour</div>-->
-<!--                                    <div class="floating-div-content-lines">  &gt;      Multiply the line length by the line length scale factor</div>-->
-<!--                                    <div class="floating-div-content-lines">  &lt;      Divide the line length by the line length scale factor</div>-->
-                                    <div class="floating-div-content-lines">  &amp;      Swap the meaning of + and -</div>
-                                    <div class="floating-div-content-lines">  (      Decrement turning angle by turning angle increment</div>
-                                    <div class="floating-div-content-lines">  )      Increment turning angle by turning angle increment</div>
+                                    <div class="floating-div-content-lines"> F Move forward by line length drawing a
+                                        line
+                                    </div>
+                                    <div class="floating-div-content-lines"> G Move forward by line length drawing a
+                                        line
+                                    </div>
+                                    <div class="floating-div-content-lines"> f Move forward by line length without
+                                        drawing a line
+                                    </div>
+                                    <div class="floating-div-content-lines"> + Turn left by turning angle</div>
+                                    <div class="floating-div-content-lines"> - Turn right by turning angle</div>
+                                    <div class="floating-div-content-lines"> | Reverse direction (ie: turn by 180
+                                        degrees)
+                                    </div>
+                                    <div class="floating-div-content-lines"> [ Push current drawing state onto stack
+                                    </div>
+                                    <div class="floating-div-content-lines"> ] Pop current drawing state from the
+                                        stack
+                                    </div>
+                                    <!--                                    <div class="floating-div-content-lines">  #      Increment the line width by line width increment</div>-->
+                                    <!--                                    <div class="floating-div-content-lines">  !      Decrement the line width by line width increment</div>-->
+                                    <div class="floating-div-content-lines"> @ Draw a dot with line width radius</div>
+                                    <!--                                    <div class="floating-div-content-lines">  {      Open a polygon</div>-->
+                                    <!--                                    <div class="floating-div-content-lines">  }      Close a polygon and fill it with fill colour</div>-->
+                                    <!--                                    <div class="floating-div-content-lines">  &gt;      Multiply the line length by the line length scale factor</div>-->
+                                    <!--                                    <div class="floating-div-content-lines">  &lt;      Divide the line length by the line length scale factor</div>-->
+                                    <div class="floating-div-content-lines"> &amp; Swap the meaning of + and -</div>
+                                    <div class="floating-div-content-lines"> ( Decrement turning angle by turning angle
+                                        increment
+                                    </div>
+                                    <div class="floating-div-content-lines"> ) Increment turning angle by turning angle
+                                        increment
+                                    </div>
                                 </div>
 
                             </div>
@@ -197,7 +227,8 @@
                             <div class="ruleSet-Style">
                                 <div class="labels">Angle:</div>
                                 <div class="rules">
-                                    <input type="number" step="any" name="angle" placeholder="angle" required value="120">
+                                    <input type="number" step="any" name="angle" placeholder="angle" required
+                                           value="120">
                                 </div>
                                 <div class="tooltip"> ?
                                     <span class="tooltiptext">Angle of rotation (degrees)</span>

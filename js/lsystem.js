@@ -150,6 +150,7 @@ const replacementRules = {
         ]
     },
     the_mother_ship: {
+        //Original
         axiom: 'F',
         angle: 240,
         length: [0, 20],
@@ -174,6 +175,7 @@ const replacementRules = {
         ]
     },
     rings: {
+        //Original
         axiom: 'F++F++F++F++F',
         angle: 61,
         length: [0, 20],
@@ -186,6 +188,7 @@ const replacementRules = {
         ]
     },
     starish: {
+        //Original
         axiom: 'F++F++F++F++F',
         angle: 66, //65 looks like DNA???
         length: [0, 20],
@@ -198,6 +201,7 @@ const replacementRules = {
         ]
     },
     windmill: {
+        //Original
         axiom: 'F++F++F++F++F',
         angle: 36, //65 looks like DNA???
         length: [0, 20],
@@ -310,6 +314,7 @@ const replacementRules = {
         ]
     },
     flying_fish_winds: {
+        //Original
         axiom: 'F++F++F++F++F',
         angle: 36,
         length: [0, 30],
@@ -326,6 +331,7 @@ const replacementRules = {
         ]
     },
     i_see_stars: {
+        //Original
         axiom: 'F+F+F+F+F',
         angle: 72,
         length: [0, 30],
@@ -338,6 +344,7 @@ const replacementRules = {
         ]
     },
     sure_is_something: {
+        //Original
         axiom: 'F+F+F+F',
         angle: 123123.123123,
         length: [1, 1],
@@ -350,6 +357,7 @@ const replacementRules = {
         ]
     },
     creepy_crawly: {
+        //Original
         axiom: 'F+F-F+F-F',
         angle: 12.90,
         length: [0, 10],
@@ -360,7 +368,169 @@ const replacementRules = {
                 rule: '[[F]+F]&F-FF'
             }
         ]
-    }
+    },
+    hexagonal_gosper: {
+        axiom: 'XF',
+        angle: 60,
+        length: [10, 0],
+        iterations: 5,
+        rules: [
+            {
+                char: 'X',
+                rule: 'X+YF++YF-FX--FXFX-YF+'
+            },
+            {
+                char: 'Y',
+                rule: '-FX+YFYF++YF+FX--FX-Y'
+            },
+        ]
+    },
+    peano_curve: {
+        axiom: 'X',
+        angle: 90,
+        length: [0, 10],
+        iterations: 4,
+        rules: [
+            {
+                char: 'X',
+                rule: 'XFYFX+F+YFXFY-F-XFYFX'
+            },
+            {
+                char: 'Y',
+                rule: 'YFXFY-F-XFYFX+F+YFXFY'
+            },
+        ]
+    },
+    hilbert: {
+        axiom: 'X',
+        angle: 90,
+        length: [0, 10],
+        iterations: 7,
+        rules: [
+            {
+                char: 'X',
+                rule: '-YF+XFX+FY-'
+            },
+            {
+                char: 'Y',
+                rule: '+XF-YFY-FX+'
+            },
+        ]
+    },
+    quadratic_gosper: {
+        axiom: '-YF',
+        angle: 90,
+        length: [0, 10],
+        iterations: 3,
+        rules: [
+            {
+                char: 'X',
+                rule: 'XFX-YF-YF+FX+FX-YF-YFFX+YF+FXFXYF-FX+YF+FXFX+YF-FXYF-YF-FX+FX+YFYF-'
+            },
+            {
+                char: 'Y',
+                rule: '+FXFX-YF-YF+FX+FXYF+FX-YFYF-FX-YF+FXYFYF-FX-YFFX+FX+YF-YF-FX+FX+YFY'
+            },
+        ]
+    },
+    Sierpinski_triangle: {
+        axiom: 'F+G+G',
+        angle: 120,
+        length: [20, 0],
+        iterations: 6,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F+G-F-G+F'
+            },
+            {
+                char: 'G',
+                rule: 'GG'
+            },
+        ]
+    },
+    sierpinski_arrowhead_curve: {
+        axiom: 'F',
+        angle: 60,
+        length: [-20, 0],
+        iterations: 6,
+        rules: [
+            {
+                char: 'F',
+                rule: 'G+F+G'
+            },
+            {
+                char: 'G',
+                rule: 'F-G-F'
+            }
+        ]
+    },
+    water_sprouts: {
+        //Original
+        axiom: 'F-G-F',
+        angle: 1,
+        length: [-20, 10],
+        iterations: 8,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F+F+F+G|'
+            },
+            {
+                char: 'G',
+                rule: 'f-f-f-fF|'
+            }
+        ]
+    },
+    boardkeys_tree: {
+        //Original
+        axiom: 'B+[A]-C',
+        angle: 12.3,
+        length: [2, 10],
+        iterations: 8,
+        rules: [
+            {
+                char: 'A',
+                rule: 'F+F+FB'
+            },
+            {
+                char: 'B',
+                rule: '[-F-F-FC]'
+            },
+            {
+                char: 'C',
+                rule: '&-F-F-B-[A]+C'
+            }
+        ]
+    },
+    boardkeys_fallen_branches: {
+        //Original
+        axiom: 'D[B+[A]-C]',
+        angle: 12.3,
+        length: [20, -10],
+        iterations: 8,
+        rules: [
+            {
+                char: 'A',
+                rule: 'F+F+FB'
+            },
+            {
+                char: 'B',
+                rule: '[-F-F-FC]'
+            },
+            {
+                char: 'C',
+                rule: '&-F-F-B-[A]+C'
+            },
+            {
+                char: 'D',
+                rule: 'f+f+f+fAD'
+            }
+        ]
+    },
+
+
+
 }
 
 const default_line_values = {
@@ -830,6 +1000,60 @@ document.addEventListener('DOMContentLoaded', function () {
                 clearCurrentSVG();
                 clearFormData();
                 fractal = replacementRules.creepy_crawly;
+                populateRuleset(fractal);
+                break;
+            case "hexagonal_gosper":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.hexagonal_gosper;
+                populateRuleset(fractal);
+                break;
+            case "peano_curve":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.peano_curve;
+                populateRuleset(fractal);
+                break;
+            case "hilbert":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.hilbert;
+                populateRuleset(fractal);
+                break;
+            case "quadratic_gosper":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.quadratic_gosper;
+                populateRuleset(fractal);
+                break;
+            case "Sierpinski_triangle":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.Sierpinski_triangle;
+                populateRuleset(fractal);
+                break;
+            case "sierpinski_arrowhead_curve":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.sierpinski_arrowhead_curve;
+                populateRuleset(fractal);
+                break;
+            case "water_sprouts":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.water_sprouts;
+                populateRuleset(fractal);
+                break;
+            case "boardkeys_tree":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.boardkeys_tree;
+                populateRuleset(fractal);
+                break;
+            case "boardkeys_fallen_branches":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.boardkeys_fallen_branches;
                 populateRuleset(fractal);
                 break;
             default:
