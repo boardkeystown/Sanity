@@ -541,7 +541,8 @@ const default_line_values = {
     angle: 0,
     rad: 0,
     counter: 0,
-    toggle: 0
+    toggle: 0,
+    line_length_scale_factor: 0
 }
 
 let line_values = {
@@ -552,7 +553,8 @@ let line_values = {
     angle: default_line_values.angle,
     rad: default_line_values.rad,
     counter: default_line_values.counter,
-    toggle: 0
+    toggle: 0,
+    line_length_scale_factor: default_line_values.line_length_scale_factor
 }
 
 //Stack used for push and pop rules
@@ -647,8 +649,29 @@ function computeValues(distX, distY, angle) {
     //copy points
     line_values.x1 = line_values.x2
     line_values.y1 = line_values.y2
-    line_values.x2 = line_values.x1 + distX
-    line_values.y2 = line_values.y2 + distY
+
+    // line_values.x2 = line_values.x1 + distX
+    // line_values.y2 = line_values.y2 + distY
+
+
+    //scale factor?
+
+
+
+    if (line_values.line_length_scale_factor === 1) {
+        let d = 0;
+        line_values.x2 = (line_values.x1 + distX)
+        line_values.y2 = (line_values.y2 + distY)
+        line_values.line_length_scale_factor = 0;
+        d = computeLineLengthScaleFactor(line_values.x1,line_values.x2,line_values.y1,line_values.y2)
+        line_values.x2 = (line_values.x1 + distX)/d
+        line_values.y2 = (line_values.y2 + distY)/d
+        console.log("ASS")
+    } else {
+        line_values.x2 = line_values.x1 + distX
+        line_values.y2 = line_values.y2 + distY
+    }
+
 
     let cos = Math.cos(line_values.rad);
     let sin = Math.sin(line_values.rad);
@@ -658,9 +681,27 @@ function computeValues(distX, distY, angle) {
     let x = ((line_values.x2 - cx) * cos) - ((line_values.y2 - cy) * sin) + cx;
     let y = ((line_values.x2 - cx) * sin) + ((line_values.y2 - cy) * cos) + cy;
 
+
+
+
+
     line_values.x2 = x
     line_values.y2 = y
+
+    //
+    // line_values.x2 = x
+    // line_values.y2 = y
 }
+
+
+function computeLineLengthScaleFactor(x1,x2,y1,y2) {
+    //JUST THE DISTANCE FORMULA
+    let y = x2 - x1;
+    let x = y2 - y1;
+    return Math.sqrt(x * x + y * y);
+}
+
+
 
 function drawLine(c = 'black') {
     g.append('line')
@@ -714,7 +755,8 @@ function stackPush(d, dy, a, c = 'black') {
         angle: line_values.angle,
         rad: line_values.rad,
         counter: line_values.counter,
-        toggle: line_values.toggle
+        toggle: line_values.toggle,
+        line_length_scale_factor: line_values.line_length_scale_factor
     }
     stack.push(line_values_cp)
 }
@@ -1111,6 +1153,7 @@ function resetLine() {
     line_values.rad = default_line_values.rad;
     line_values.counter = default_line_values.counter;
     line_values.toggle = default_line_values.toggle;
+    line_values.line_length_scale_factor = default_line_values.line_length_scale_factor;
 }
 
 function clearFormData() {
@@ -1396,6 +1439,9 @@ function drawLsystem(instructions, angle, distanceX, distanceY) {
             case ')':
                 incrementAngle(angle);
                 break
+            case '>':
+                line_values.line_length_scale_factor = 1;
+                break;
             case '&':
                 //Swap the meaning of + and -
                 line_values.toggle = (line_values.toggle == 0) ? 1 : 0;
@@ -1444,22 +1490,30 @@ function handleZoom(e) {
 }
 
 function zoomIn() {
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.scaleBy, 2);
+    // svg.selectAll('g')
+    //     .transition()
+    //     .call(zoom.scaleBy, 2);
+
+    zoom.scaleBy(svg, 2);
+
 }
 
 function zoomOut() {
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.scaleBy, 0.5);
+    // svg.selectAll('g')
+    //     .transition()
+    //     .call(zoom.scaleBy, 0.5);
+
+    zoom.scaleBy(svg, 0.5);
 }
 
 function resetZoom() {
 
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.scaleTo, 1);
+    // svg.selectAll('g')
+    //     .transition()
+    //     .call(zoom.scaleTo, 1);
+
+    zoom.transform(svg, d3.zoomIdentity);
+
 }
 
 function center() {
@@ -1471,15 +1525,20 @@ function center() {
 }
 
 function panLeft() {
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.translateBy, -50, 0);
+    // svg.selectAll('g')
+    //     .transition()
+    //     .call(zoom.translateBy, -50, 0);
+
+    zoom.translateBy(svg,-50,0)
 }
 
 function panRight() {
-    svg.selectAll('g')
-        .transition()
-        .call(zoom.translateBy, 50, 0);
+    // svg.selectAll('g')
+    //     .transition()
+    //     .call(zoom.translateBy, 50, 0);
+
+    zoom.translateBy(svg,50,0)
+
 }
 
 initZoom();
@@ -1550,7 +1609,14 @@ function dragElement(elmnt) {
     } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
         elmnt.onmousedown = dragMouseDown;
+
+
+        elmnt.ontouchmove = dragMouseDown;
+
     }
+
+
+
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
