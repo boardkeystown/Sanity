@@ -540,6 +540,23 @@ const replacementRules = {
             }
         ]
     },
+    islands_and_lakes: {
+        //LOL remove 1 f from rule
+        axiom: 'F+F+F+F',
+        angle: 90,
+        length: [0, 20],
+        iterations: 2,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F+f-FF+F+FF+Ff+FF-f+FF-F-FF-Ff-FFF'
+            },
+            {
+                char: 'f',
+                rule: 'fffff'
+            },
+        ]
+    },
     debug: {
         //Uses this to debug
         axiom: '[F>FF>F]+FF]',
@@ -1136,6 +1153,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 fractal = replacementRules.fractal_tree;
                 populateRuleset(fractal);
                 break;
+            case "islands_and_lakes":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.islands_and_lakes;
+                populateRuleset(fractal);
+                break
             default:
             //do nothing
         }
