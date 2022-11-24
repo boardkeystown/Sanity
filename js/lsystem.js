@@ -528,7 +528,31 @@ const replacementRules = {
             }
         ]
     },
-
+    fractal_tree: {
+        axiom: 'FX',
+        angle: 40,
+        length: [0, 200],
+        iterations: 10,
+        rules: [
+            {
+                char: 'X',
+                rule: '<[-FX]+FX'
+            }
+        ]
+    },
+    debug: {
+        //Uses this to debug
+        axiom: '[F>FF>F]+FF]',
+        angle: 90,
+        length: [10, 0],
+        iterations: 2,
+        rules: [
+            {
+                char: '',
+                rule: ''
+            }
+        ]
+    },
 
 
 }
@@ -542,7 +566,7 @@ const default_line_values = {
     rad: 0,
     counter: 0,
     toggle: 0,
-    line_length_scale_factor: 0
+    line_length_scale_factor: 1
 }
 
 let line_values = {
@@ -561,7 +585,9 @@ let line_values = {
 const stack = []
 
 //Main fractal ruleset
+
 let fractal = replacementRules.triangle;
+
 
 //**********************************************************************************************************************
 //Generate L-System
@@ -617,6 +643,7 @@ const colorList = {
     c_sliver: ["#aaa9ad", "#b8b7ba", "#c6c5c8", "#e2e2e3", "#f0f0f1", "#ffffff"],
     c_earth: ["#9D5F38", "#D19C4C", "#25963E", "#10C135"],
 }
+
 let colors = colorList.c_yelLi
 
 function chooseColor() {
@@ -650,28 +677,8 @@ function computeValues(distX, distY, angle) {
     line_values.x1 = line_values.x2
     line_values.y1 = line_values.y2
 
-    // line_values.x2 = line_values.x1 + distX
-    // line_values.y2 = line_values.y2 + distY
-
-
-    //scale factor?
-
-
-
-    if (line_values.line_length_scale_factor === 1) {
-        let d = 0;
-        line_values.x2 = (line_values.x1 + distX)
-        line_values.y2 = (line_values.y2 + distY)
-        line_values.line_length_scale_factor = 0;
-        d = computeLineLengthScaleFactor(line_values.x1,line_values.x2,line_values.y1,line_values.y2)
-        line_values.x2 = (line_values.x1 + distX)/d
-        line_values.y2 = (line_values.y2 + distY)/d
-        console.log("ASS")
-    } else {
-        line_values.x2 = line_values.x1 + distX
-        line_values.y2 = line_values.y2 + distY
-    }
-
+    line_values.x2 = line_values.x1 + (distX * line_values.line_length_scale_factor)
+    line_values.y2 = line_values.y2 + (distY * line_values.line_length_scale_factor)
 
     let cos = Math.cos(line_values.rad);
     let sin = Math.sin(line_values.rad);
@@ -681,29 +688,50 @@ function computeValues(distX, distY, angle) {
     let x = ((line_values.x2 - cx) * cos) - ((line_values.y2 - cy) * sin) + cx;
     let y = ((line_values.x2 - cx) * sin) + ((line_values.y2 - cy) * cos) + cy;
 
-
-
-
-
     line_values.x2 = x
     line_values.y2 = y
 
+    // //backup
+    // line_values.x1 = line_values.x2
+    // line_values.y1 = line_values.y2
+    //
+    // line_values.x2 = line_values.x1 + distX
+    // line_values.y2 = line_values.y2 + distY
+    //
+    // let cos = Math.cos(line_values.rad);
+    // let sin = Math.sin(line_values.rad);
+    // let cx = line_values.x1
+    // let cy = line_values.y1
+    //
+    // let x = ((line_values.x2 - cx) * cos) - ((line_values.y2 - cy) * sin) + cx;
+    // let y = ((line_values.x2 - cx) * sin) + ((line_values.y2 - cy) * cos) + cy;
     //
     // line_values.x2 = x
     // line_values.y2 = y
 }
 
-
-function computeLineLengthScaleFactor(x1,x2,y1,y2) {
-    //JUST THE DISTANCE FORMULA
+function distanceFormula(x1,x2,y1,y2) {
     let y = x2 - x1;
     let x = y2 - y1;
     return Math.sqrt(x * x + y * y);
 }
 
+function setScaleFactorDiv(distX,distY,scaleFactor=1.6) {
+    // let d_temp = distanceFormula(line_values.x1+distX,line_values.x2,line_values.y1+distY,line_values.y2);
+    // line_values.line_length_scale_factor = (line_values.line_length_scale_factor*d_temp)
+    line_values.line_length_scale_factor = (line_values.line_length_scale_factor/scaleFactor)
+}
 
+function setScaleFactorMul(distX,distY,scaleFactor=1.6) {
+    //hard limit
+    let limiter = (line_values.line_length_scale_factor*scaleFactor)
+    if (limiter > 2) {
+        limiter = 2;
+    }
+    line_values.line_length_scale_factor = limiter
+}
 
-function drawLine(c = 'black') {
+function drawLine(c = 'green') {
     g.append('line')
         .style("stroke", `${c}`)
         .style("stroke-width", strokeWidth)
@@ -714,7 +742,7 @@ function drawLine(c = 'black') {
         .attr("stroke-linecap", "round")
 }
 
-function drawCircle(d, dy, c = 'black') {
+function drawCircle(d, dy, c = 'green') {
     let cc = c;
     let dd = (d > 0) ? d : (dy > 0) ? dy : 5;
     g.append('circle')
@@ -725,26 +753,26 @@ function drawCircle(d, dy, c = 'black') {
         .attr("r", dd * 1 / 8)
 }
 
-function forward(d, dy, a, c = 'black') {
+function forward(d, dy, a, c = 'green') {
     computeValues(d, dy, a)
     drawLine(c);
 }
 
-function forwardDot(d, dy, a, c = 'black') {
+function forwardDot(d, dy, a, c = 'green') {
     computeValues(d, dy, a)
     drawCircle(d, dy, c);
 }
 
-function move(d, dy, a, c = 'black') {
+function move(d, dy, a, c = 'green') {
     computeValues(d, dy, a)
 }
 
-function backward(d, a, c = 'black') {
+function backward(d, a, c = 'green') {
     computeValues(-d, 0, a)
     drawLine(c);
 }
 
-function stackPush(d, dy, a, c = 'black') {
+function stackPush(d, dy, a, c = 'green') {
     //[
     // push current drawing state onto stack
     let line_values_cp = {
@@ -761,7 +789,7 @@ function stackPush(d, dy, a, c = 'black') {
     stack.push(line_values_cp)
 }
 
-function stackPop(d, dy, a, c = 'black') {
+function stackPop(d, dy, a, c = 'green') {
     //]
     // pop current drawing state onto stack
     line_values = stack.pop()
@@ -771,8 +799,7 @@ function stackPop(d, dy, a, c = 'black') {
 //Generate the L-SYSTEM, run, submit
 function getData(form) {
 
-    //scroll to top of page after submit
-    window.scrollTo({top: 100, behavior: 'smooth'});
+
 
     //https://stackoverflow.com/questions/3547035/getting-html-form-values
     let formData = new FormData(form);
@@ -837,8 +864,13 @@ function getData(form) {
     colors = user_color;
     fractal = user_lsys;
     Promise.all([LSystem(fractal.iterations, fractal.axiom)]).then(d => {
+
             clearCurrentSVG();
+
             drawLsystem(d[0], fractal.angle, ...fractal.length);
+
+            //scroll to top of page after submit
+            window.scrollTo({top: 100, behavior: 'smooth'});
         }
     )
 }
@@ -1098,6 +1130,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 fractal = replacementRules.boardkeys_fallen_branches;
                 populateRuleset(fractal);
                 break;
+            case "fractal_tree":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.fractal_tree;
+                populateRuleset(fractal);
+                break;
             default:
             //do nothing
         }
@@ -1243,8 +1281,8 @@ function makeFormLengths(data) {
         <div class="ruleSet-Style">
             <div class="labels">Length:</div>
             <div class="rules">
-                <input type="number" step="any" name="lengthX" placeholder="X" value="${data.length[0]}">
-                <input type="number" step="any" name="lengthY" placeholder="Y" value="${data.length[1]}">
+                <input type="number" step="any" name="lengthX" placeholder="X" required value="${data.length[0]}">
+                <input type="number" step="any" name="lengthY" placeholder="Y" required value="${data.length[1]}">
             </div>
                  <div class="tooltip"> ?
                     <span class="tooltiptext">X displacement length<br><br>Y displacement length</span>
@@ -1393,6 +1431,7 @@ function drawLsystem(instructions, angle, distanceX, distanceY) {
     // //Debug Tests
     // debug()
     // return
+    // console.log(instructions)
     let cmd;
     for (let i = 0; i < instructions.length; ++i) {
         cmd = instructions.charAt(i);
@@ -1440,7 +1479,10 @@ function drawLsystem(instructions, angle, distanceX, distanceY) {
                 incrementAngle(angle);
                 break
             case '>':
-                line_values.line_length_scale_factor = 1;
+                setScaleFactorMul(distanceX,distanceY)
+                break;
+            case '<':
+                setScaleFactorDiv(distanceX,distanceY)
                 break;
             case '&':
                 //Swap the meaning of + and -
@@ -1557,7 +1599,6 @@ function saveSVG() {
 }
 
 
-
 /*MOVABLE DIV*/
 let resetToggle = 0;
 let isOriginalPositionCaptured = false;
@@ -1565,7 +1606,6 @@ let origPos = {
     x: 0,
     y: 0,
 }
-
 
 
 function btnCLOSE() {
@@ -1586,13 +1626,11 @@ function btnClick() {
     }
 }
 
-
 function getOrigPos(elemt) {
     /*-50 amd -300 hard coded to center relative to help button icon*/
     origPos.y = elemt.offsetTop-50;
     origPos.x = elemt.offsetLeft-300;
 }
-
 
 function resetElement(elmnt) {
     elmnt.style.top = origPos.y + "px";
@@ -1614,8 +1652,6 @@ function dragElement(elmnt) {
         elmnt.ontouchmove = dragMouseDown;
 
     }
-
-
 
     function dragMouseDown(e) {
         e = e || window.event;
@@ -1655,22 +1691,12 @@ function dragElement(elmnt) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//TODO: LOAD AND SAVE JS?
 
 
 /*
 //TODO: Cringe CONVERT SVG TO PNG???? NO. SVG is better.
+//Yea for real. Point is to simply make SVG. WANT A PNG? TAKE A SCREEN SHOT LOL
 //https://ramblings.mcpher.com/gassnippets2/converting-svg-to-png-with-javascript/
 //https://stackoverflow.com/questions/7620509/how-does-one-get-the-height-width-of-an-svg-group-element
 function savePNG() {

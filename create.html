@@ -24,7 +24,7 @@
         <button onclick="resetZoom()">Reset zoom</button>
         <button onclick="panLeft()">Pan left</button>
         <button onclick="panRight()">Pan right</button>
-<!--        <button onclick="center()">Center</button>-->
+        <!--        <button onclick="center()">Center</button>-->
         <button onclick="saveSVG()">SAVE SVG</button>
     </div>
     <div id="container" class="svg-container">
@@ -32,8 +32,8 @@
     </div>
     <div id="toolbox">
         <div id="presets">
-            <button class="button-56" onclick="loadPreset(1)">Dragon Curve</button>
-            <button class="button-56" onclick="loadPreset(2)">Triangle</button>
+            <button onclick="loadPreset(1)">Dragon Curve</button>
+            <button onclick="loadPreset(2)">Triangle</button>
             <button onclick="loadPreset(3)">Simple Tree</button>
             <button onclick="loadPreset(4)">Koch</button>
             <button onclick="loadPreset(5)">Classic Sierpinski Curve</button>
@@ -61,6 +61,7 @@
                     <option value="boardkeys_tree">Boardkeys Tree</option>
                     <option value="boardkeys_fallen_branches">Boardkeys fallen branches</option>
                     <option value="water_sprouts">Water Sprouts</option>
+                    <option value="fractal_tree">Fractal Tree</option>
                 </optgroup>
                 <optgroup label="Other">
                     <option value="the_mother_ship">The Mother Ship</option>
@@ -161,8 +162,12 @@
                                     <div class="floating-div-content-lines"> @ Draw a dot with line width radius</div>
                                     <!--                                    <div class="floating-div-content-lines">  {      Open a polygon</div>-->
                                     <!--                                    <div class="floating-div-content-lines">  }      Close a polygon and fill it with fill colour</div>-->
-                                    <!--                                    <div class="floating-div-content-lines">  &gt;      Multiply the line length by the line length scale factor</div>-->
-                                    <!--                                    <div class="floating-div-content-lines">  &lt;      Divide the line length by the line length scale factor</div>-->
+                                    <div class="floating-div-content-lines"> &gt; Multiply the line length by the line
+                                        length scale factor
+                                    </div>
+                                    <div class="floating-div-content-lines"> &lt; Divide the line length by the line
+                                        length scale factor
+                                    </div>
                                     <div class="floating-div-content-lines"> &amp; Swap the meaning of + and -</div>
                                     <div class="floating-div-content-lines"> ( Decrement turning angle by turning angle
                                         increment

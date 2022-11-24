@@ -89,10 +89,25 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0.04cm;
 }
 
 .button-zoom button {
-    color: black;
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: large;
+    color:chartreuse;
+    background: black;
+    margin-left: 0.05cm;
+    margin-right: 0.05cm;
+    border: chartreuse 0.03cm solid;
+}
+
+
+.button-zoom button:active,
+.button-zoom button:hover {
+    color:black;
+    background: chartreuse;
 }
 
 #presets {
