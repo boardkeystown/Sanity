@@ -6,233 +6,84 @@
     <link rel="icon" type="image/png" href="./assets/global/favcon-32X32.png">
     <link rel="stylesheet" type="text/css" href="./css/base.css"/>
     <link rel="stylesheet" type="text/css" href="./css/create.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/manual.css"/>
     <link rel="stylesheet" type="text/css" href="./css/darkmode.css.css"/>
     <link rel="stylesheet" type="text/css" href="./css/lightmode.css.css"/>
     <script src="./js/index.js"></script>
-    <div title="Toggle light/dark theme" class="theme-switch-wrapper">
-        <label class="theme-switch" for="th-toggle">
-            <input type="checkbox" id="th-toggle">
-            <div class="theme-icon"></div>
-        </label></div>
 </head>
 <body>
-<div id="navbar">
-    <a href="index.html" target="_top"> <b class="site-name-nav">SANITY</b> </a>
-    <a class="nav-btn-bg" href="create.html" target="_top">  Create  </a>
-    <a class="nav-btn-bg" href="gallery.html" target="_top">  View Gallery  </a>
-    <a class="nav-btn-bg" href="about.html" target="_top">  About  </a>
-</div>
- <center>
-     <div class="table-wrapper">
-     <table width="80%" class="styled-table">
-         <tbody>
-         <tr class="odd topAlign" >
-             <p> Symbols: The following characters define how to generate an L-System.</p>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>F</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Move forward by line length drawing a line</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>f</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Move forward by line length without drawing a line.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>+</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Turn left by turning angle.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>-</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Turn right by turning angle.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>|</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Reverse direction (ie: turn by 180 degrees).</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>[</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Push current drawing state onto stack.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>]</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Pop current drawing state from the stack.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>#</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Increment the line width by line width increment.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>!</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Decrement the line width by line width increment.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>@</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Draw a dot with line width radius.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>{</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Open a polygon.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>}</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Close a polygon and fill it with fill colour.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>></a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a> Multiply the line length by the line length scale factor.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a><</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Divide the line length by the line length scale factor.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>&</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Swap the meaning of + and -.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>(</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Decrement turning angle by turning angle increment.</a>
-             </td>
-         </tr>
-         <tr class="odd topAlign">
-             <td class="tblName">
-                 <p>
-                     <a>)</a>
-                 </p>
-             </td>
-             <td class="tblDescr">
-                 <p>
-                     <a>Increment turning angle by turning angle increment.</a>
-             </td>
-         </tr>
-         </tbody>
-     </table>
+<div id="main">
+    <div id="navbar">
+        <a href="index.html" target="_top"> <b class="site-name-nav">SANITY</b> </a>
+        <a class="nav-btn-bg" href="create.html" target="_top">  Create  </a>
+        <a class="nav-btn-bg" href="gallery.html" target="_top">  View Gallery  </a>
+        <a class="nav-btn-bg" href="about.html" target="_top">  About  </a>
+    </div>
+     <div id="background-rules">
+         <div class="background-rules-title">Symbol - Rule</div>
+         <div>&nbsp; F &nbsp; Move forward by line length drawing a
+             line
+         </div>
+         <div>&nbsp; G &nbsp; Move forward by line length drawing a
+             line
+         </div>
+         <div>&nbsp; f &nbsp; Move forward by line length without
+             drawing a line
+         </div>
+         <div>&nbsp; + &nbsp; Turn left by turning angle</div>
+         <div>&nbsp; - &nbsp; Turn right by turning angle</div>
+         <div>&nbsp; | &nbsp; Reverse direction (ie: turn by 180
+             degrees)
+         </div>
+         <div>&nbsp; [ &nbsp; Push current drawing state onto stack
+         </div>
+         <div>&nbsp; ] &nbsp; Pop current drawing state from the
+             stack
+         </div>
+         <!--                                    <div class="floating-div-content-lines">  #      Increment the line width by line width increment</div>-->
+         <!--                                    <div class="floating-div-content-lines">  !      Decrement the line width by line width increment</div>-->
+         <div>&nbsp; @ &nbsp; Draw a dot with line width radius</div>
+         <!--                                    <div class="floating-div-content-lines">  {      Open a polygon</div>-->
+         <!--                                    <div class="floating-div-content-lines">  }      Close a polygon and fill it with fill colour</div>-->
+         <div>&nbsp; &gt;  &nbsp; Multiply the line length by the line
+             length scale factor
+         </div>
+         <div>&nbsp; &lt;  &nbsp; Divide the line length by the line
+             length scale factor
+         </div>
+         <div>&nbsp; &amp; &nbsp; Swap the meaning of + and -</div>
+         <div>&nbsp; ( &nbsp; Decrement turning angle by turning angle
+             increment
+         </div>
+         <div>&nbsp; ) &nbsp; Increment turning angle by turning angle
+             increment
+         </div>
      </div>
- </center>
-<script>
-    $('#confirm-button').on('click', function() { $('#cookie-confirm').fadeOut(); createCookie("cookies_nom", "yum", 180, true); });
-    $('#archive-button').on('click', function() { $('#cookie-archive').fadeOut(); createCookie("cookies_state", "archive", 3, false); });
-    if (!(readCookie('cookies_nom') == 'yum')) { $('#cookie-confirm').fadeIn(); }
-    if (document.documentElement.getAttribute('data-theme') === 'dark')
-        $('input#th-toggle').prop('checked', true);
-    $('input#th-toggle').change(function() {
-        var theme = this.checked ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-    });
-</script>
-
-
+     <h2>Step-by-Step Guide to build an L-System</h2>
+         <h3>The Basics</h3>
+            <div>The starting point for Sanity is (0,0) on a 2D Cartesian plane.</div>
+            <figure style="width:500px; height:375px;">
+                <img src="assets/manual/coordinates.gif" width="100%" height="100%">
+            </figure>
+            <div>Adjust the starting x and y position by using the "Line Control" values shown below.</div>
+             <figure style="width:500px; height:250px;">
+                 <img src="assets/manual/xystartingpoint.png" width="100%" height="100%">
+             </figure>
+         <h3>Line Control</h3>
+          <h3> What the rules and symbols do</h3>
+    <h2>Video Tutorials</h2>
+     <p>Understanding L-Systems</p>
+     <iframe width="520" height="415"
+             src="https://www.youtube.com/embed/feNVBEPXAcE" frameborder="0" allowfullscreen>>
+     </iframe>
+     <p>Programming an L-System and Understanding Rulesets</p>
+     <iframe width="520" height="415"
+             src="https://www.youtube.com/embed/f6ra024-ASY" frameborder="0" allowfullscreen>>
+     </iframe>
+     <p>Importing SVG to Adobe Illustrator</p>
+     <iframe width="520" height="415"
+             src="https://www.youtube.com/embed/M3xmno_rIsQ" frameborder="0" allowfullscreen>>
+     </iframe>
+ </div>
 </body>
 </html>
