@@ -1,0 +1,25 @@
+#background-rules
+{
+    background:black;
+    padding:1rem;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: x-large;
+    color: green;
+    border:teal 1px solid;
+    box-shadow: #1161a8 4px 4px 4px 4px;
+}
+
+#background-rules
+ div
+{
+    font-family: monospace;
+    /*color: #1160a8;*/
+}
+
+.background-rules-title
+{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+}
