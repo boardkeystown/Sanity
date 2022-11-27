@@ -3,49 +3,6 @@ body {
     height: 100%;
 }
 
-
-#main {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    flex-direction: column;
-    width: 80vw;
-}
-
-#navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 2vw 2vh;
-    width: inherit;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    background: #2b2c31;
-}
-
-#navbar a {
-    text-decoration: none;
-    list-style-type: none;
-    color: aliceblue;
-    font-size: x-large;
-}
-
-#navbar .nav-btn-bg {
-    border-radius: 0.5cm;
-    padding: 0.15cm;
-    background: #1161a8;
-    box-shadow: black 4px 4px 4px;
-}
-
-#navbar .nav-btn-bg:hover {
-    background-color: #63abf3;
-    text-shadow: #000000 1px 1px 3px;
-    box-shadow: black 8px 8px 8px;
-}
-
-
 /*https://chartio.com/resources/tutorials/how-to-resize-an-svg-when-the-window-is-resized-in-d3-js/*/
 .svg-container {
     display: inline-block;
