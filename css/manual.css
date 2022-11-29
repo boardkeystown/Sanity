@@ -8,6 +8,8 @@
     color: green;
     border:teal 1px solid;
     box-shadow: #1161a8 4px 4px 4px 4px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 #background-rules div {
@@ -20,4 +22,27 @@
     text-align: center;
     font-size: xx-large;
     font-weight: bolder;
+}
+
+
+#md {
+    background: black;
+    padding: 1.5rem;
+}
+
+
+#md h1 {
+    text-align: center;
+}
+
+
+#md p img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.foocolor {
+    color: #9a9ef9;
 }

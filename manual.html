@@ -19,56 +19,63 @@
         <a class="nav-btn-bg" href="about.html" target="_top">  About  </a>
     </div>
 
+    <div id="background-rules">
+        <div class="background-rules-title">Symbol - Rule</div>
+        <div>&nbsp; F &nbsp; Move forward by line length drawing a
+            line
+        </div>
+        <div>&nbsp; G &nbsp; Move forward by line length drawing a
+            line
+        </div>
+        <div>&nbsp; f &nbsp; Move forward by line length without
+            drawing a line
+        </div>
+        <div>&nbsp; + &nbsp; Turn left by turning angle</div>
+        <div>&nbsp; - &nbsp; Turn right by turning angle</div>
+        <div>&nbsp; | &nbsp; Reverse direction (ie: turn by 180
+            degrees)
+        </div>
+        <div>&nbsp; [ &nbsp; Push current drawing state onto stack
+        </div>
+        <div>&nbsp; ] &nbsp; Pop current drawing state from the
+            stack
+        </div>
+        <div>&nbsp; @ &nbsp; Draw a dot with line width radius</div>
+        <div>&nbsp; &gt;  &nbsp; Multiply the line length by the line
+            length scale factor
+        </div>
+        <div>&nbsp; &lt;  &nbsp; Divide the line length by the line
+            length scale factor
+        </div>
+        <div>&nbsp; &amp; &nbsp; Swap the meaning of + and -</div>
+        <div>&nbsp; ( &nbsp; Decrement turning angle by turning angle
+            increment
+        </div>
+        <div>&nbsp; ) &nbsp; Increment turning angle by turning angle
+            increment
+        </div>
+    </div>
+
+
+
     <div id="md">
         <script>
             fetch('./assets/manual/man.md')
                 .then(response => response.text())
                 .then((data) => {
                     const converter = new showdown.Converter();
+                    // console.log(converter.getOptions())
+                    converter.setOption('tables', 'true');
                     const html = converter.makeHtml(data);
-                    let content = document.getElementById("md")
+                    const content = document.getElementById("md")
                     content.innerHTML = html;
                 })
         </script>
     </div>
 
 
-     <div id="background-rules">
-         <div class="background-rules-title">Symbol - Rule</div>
-         <div>&nbsp; F &nbsp; Move forward by line length drawing a
-             line
-         </div>
-         <div>&nbsp; G &nbsp; Move forward by line length drawing a
-             line
-         </div>
-         <div>&nbsp; f &nbsp; Move forward by line length without
-             drawing a line
-         </div>
-         <div>&nbsp; + &nbsp; Turn left by turning angle</div>
-         <div>&nbsp; - &nbsp; Turn right by turning angle</div>
-         <div>&nbsp; | &nbsp; Reverse direction (ie: turn by 180
-             degrees)
-         </div>
-         <div>&nbsp; [ &nbsp; Push current drawing state onto stack
-         </div>
-         <div>&nbsp; ] &nbsp; Pop current drawing state from the
-             stack
-         </div>
-         <div>&nbsp; @ &nbsp; Draw a dot with line width radius</div>
-         <div>&nbsp; &gt;  &nbsp; Multiply the line length by the line
-             length scale factor
-         </div>
-         <div>&nbsp; &lt;  &nbsp; Divide the line length by the line
-             length scale factor
-         </div>
-         <div>&nbsp; &amp; &nbsp; Swap the meaning of + and -</div>
-         <div>&nbsp; ( &nbsp; Decrement turning angle by turning angle
-             increment
-         </div>
-         <div>&nbsp; ) &nbsp; Increment turning angle by turning angle
-             increment
-         </div>
-     </div>
+
+
      <h2>Step-by-Step Guide to build an L-System</h2>
          <h3>The Basics</h3>
             <div>The starting point for Sanity is (0,0) on a 2D Cartesian plane.</div>
@@ -93,6 +100,7 @@
     <h3>Changing the Angle</h3>
     <div>By changing the number from 0 to 360, the angle at which the line is drawn will be rotated accordingly.</div>
     <figure style="width:550px; height:150px;">
+<!--        <img src="assets/manual/angle.png" width="100%" height="100%">-->
         <img src="assets/manual/angle.png" width="100%" height="100%">
     </figure>
     <h2>Video Tutorials</h2>
