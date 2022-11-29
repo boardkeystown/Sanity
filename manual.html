@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="./css/base.css"/>
     <link rel="stylesheet" type="text/css" href="./css/create.css"/>
     <link rel="stylesheet" type="text/css" href="./css/manual.css"/>
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
+
 </head>
 <body>
 <div id="main">
@@ -16,6 +18,21 @@
         <a class="nav-btn-bg" href="gallery.html" target="_top">  View Gallery  </a>
         <a class="nav-btn-bg" href="about.html" target="_top">  About  </a>
     </div>
+
+    <div id="md">
+        <script>
+            fetch('./assets/manual/man.md')
+                .then(response => response.text())
+                .then((data) => {
+                    const converter = new showdown.Converter();
+                    const html = converter.makeHtml(data);
+                    let content = document.getElementById("md")
+                    content.innerHTML = html;
+                })
+        </script>
+    </div>
+
+
      <div id="background-rules">
          <div class="background-rules-title">Symbol - Rule</div>
          <div>&nbsp; F &nbsp; Move forward by line length drawing a
