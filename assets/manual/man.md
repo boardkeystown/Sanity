@@ -51,12 +51,12 @@
 <h3>The Basics</h3>
 <div><p>The starting point for Sanity is (0,0) on a 2D Cartesian plane. For example (0,0) -> (10,0).
 This means the line length is the distance from origin to the point specified.<br> This gives you total control of starting positions.</p>
-<img style="display: block" src="/assets/manual/coordinates.gif">
+<img style="display: block" src="./assets/manual/coordinates.gif">
 </div>
 
 <h3>Line Control</h3>
 <div><p>Adjust the starting x and y position by using the "Line Control" values shown below. <br>Iterations controls how many expansions to do.</p>
-<img style="display: block" src="/assets/manual/xystartingpoint.png">
+<img style="display: block" src="./assets/manual/xystartingpoint.png">
 </div>
 
 <h3>What the rules and symbols do</h3>
@@ -64,17 +64,17 @@ This means the line length is the distance from origin to the point specified.<b
 Note that any other ASCII characters is not accepted unless it is listed in the rules.
 <br> The axiom is your starting condition.</p>
 <br>
-<img style="display: block" src="/assets/manual/rules.png">
+<img style="display: block" src="./assets/manual/rules.png">
 </div>
 
 <h3>Removing and Adding rules</h3>
 <div><p>By clicking the Plus or Minus buttons rules can be added or subtracted from the L-System. By adding more rules, more complex designs can be created.</p>
-<img style="display: block" src="/assets/manual/addremove.png">
+<img style="display: block" src="./assets/manual/addremove.png">
 </div>
 
 <h3>Changing the Angle</h3>
 <div><p>By changing the number from 0 to 360, the angle at which the line is drawn will be rotated accordingly.</p>
-<img style="display: block" src="/assets/manual/angle.png">
+<img style="display: block" src="./assets/manual/angle.png">
 </div>
 
 <a id="tutorials"></a>
