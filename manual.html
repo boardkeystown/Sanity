@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="./css/create.css"/>
     <link rel="stylesheet" type="text/css" href="./css/manual.css"/>
     <script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
-
 </head>
 <body>
 <div id="main">
@@ -18,46 +17,6 @@
         <a class="nav-btn-bg" href="gallery.html" target="_top">  View Gallery  </a>
         <a class="nav-btn-bg" href="about.html" target="_top">  About  </a>
     </div>
-
-    <div id="background-rules">
-        <div class="background-rules-title">Symbol - Rule</div>
-        <div>&nbsp; F &nbsp; Move forward by line length drawing a
-            line
-        </div>
-        <div>&nbsp; G &nbsp; Move forward by line length drawing a
-            line
-        </div>
-        <div>&nbsp; f &nbsp; Move forward by line length without
-            drawing a line
-        </div>
-        <div>&nbsp; + &nbsp; Turn left by turning angle</div>
-        <div>&nbsp; - &nbsp; Turn right by turning angle</div>
-        <div>&nbsp; | &nbsp; Reverse direction (ie: turn by 180
-            degrees)
-        </div>
-        <div>&nbsp; [ &nbsp; Push current drawing state onto stack
-        </div>
-        <div>&nbsp; ] &nbsp; Pop current drawing state from the
-            stack
-        </div>
-        <div>&nbsp; @ &nbsp; Draw a dot with line width radius</div>
-        <div>&nbsp; &gt;  &nbsp; Multiply the line length by the line
-            length scale factor
-        </div>
-        <div>&nbsp; &lt;  &nbsp; Divide the line length by the line
-            length scale factor
-        </div>
-        <div>&nbsp; &amp; &nbsp; Swap the meaning of + and -</div>
-        <div>&nbsp; ( &nbsp; Decrement turning angle by turning angle
-            increment
-        </div>
-        <div>&nbsp; ) &nbsp; Increment turning angle by turning angle
-            increment
-        </div>
-    </div>
-
-
-
     <div id="md">
         <script>
             fetch('./assets/manual/man.md')
@@ -72,50 +31,6 @@
                 })
         </script>
     </div>
-
-
-
-
-     <h2>Step-by-Step Guide to build an L-System</h2>
-         <h3>The Basics</h3>
-            <div>The starting point for Sanity is (0,0) on a 2D Cartesian plane.</div>
-            <figure style="width:500px; height:375px;">
-                <img src="assets/manual/coordinates.gif" width="100%" height="100%">
-            </figure>
-            <div>Adjust the starting x and y position by using the "Line Control" values shown below.</div>
-             <figure style="width:500px; height:250px;">
-                 <img src="assets/manual/xystartingpoint.png" width="100%" height="100%">
-             </figure>
-         <h3>Line Control</h3>
-          <h3>What the rules and symbols do</h3>
-            <div>Rules denote a specific action for the line generator to take. By chaining various rules together, an image can be formed. Note that any other ASCII characters is not accepted unless it is listed in the rules.</div>
-    <figure style="width:450px; height:250px;">
-        <img src="assets/manual/rules.png" width="100%" height="100%">
-    </figure>
-    <h3>Removing and Adding rules</h3>
-        <div>By clicking the Plus or Minus buttons rules can be added or subtracted from the L-System. By adding more rules, more complex designs can be created.</div>
-    <figure style="width:300px; height:100px;">
-        <img src="assets/manual/addremove.png" width="100%" height="100%">
-    </figure>
-    <h3>Changing the Angle</h3>
-    <div>By changing the number from 0 to 360, the angle at which the line is drawn will be rotated accordingly.</div>
-    <figure style="width:550px; height:150px;">
-<!--        <img src="assets/manual/angle.png" width="100%" height="100%">-->
-        <img src="assets/manual/angle.png" width="100%" height="100%">
-    </figure>
-    <h2>Video Tutorials</h2>
-     <p>Understanding L-Systems</p>
-     <iframe width="520" height="415"
-             src="https://www.youtube.com/embed/feNVBEPXAcE" frameborder="0" allowfullscreen>
-     </iframe>
-     <p>Programming an L-System and Understanding Rulesets</p>
-     <iframe width="520" height="415"
-             src="https://www.youtube.com/embed/f6ra024-ASY" frameborder="0" allowfullscreen>
-     </iframe>
-     <p>Importing SVG to Adobe Illustrator</p>
-     <iframe width="520" height="415"
-             src="https://www.youtube.com/embed/M3xmno_rIsQ" frameborder="0" allowfullscreen>
-     </iframe>
  </div>
 </body>
 </html>
