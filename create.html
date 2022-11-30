@@ -56,6 +56,7 @@
                 <optgroup label="Natural / Organic">
                     <option value="saupe_tree">Saupe Tree</option>
                     <option value="alien_tree">Alien Tree</option>
+                    <option value="arrowhead_tree">Arrowhead Tree</option>
                     <option value="weed">Weed</option>
                     <option value="creepy_crawly">Creepy Crawly</option>
                     <option value="sure_is_something">It's Alive!</option>
@@ -63,12 +64,15 @@
                     <option value="boardkeys_fallen_branches">Boardkeys fallen branches</option>
                     <option value="water_sprouts">Water Sprouts</option>
                     <option value="fractal_tree">Fractal Tree</option>
+                    <option value="hyper_frog">Hyper Frog</option>
                 </optgroup>
                 <optgroup label="Other">
                     <option value="the_mother_ship">The Mother Ship</option>
                     <option value="rings">Rings</option>
                     <option value="starish">Starish</option>
                     <option value="windmill">Windmill</option>
+                    <option value="fireball">Fireball</option>
+                    <option value="galaxy">Galaxy</option>
                     <option value="flying_fish_winds">Flying Fish Winds</option>
                     <option value="i_see_stars">I See Stars</option>
                 </optgroup>
@@ -81,29 +85,48 @@
                     <div class="color-attributes">
                         <div class="color-attributes-column">
                             <select id="color-options">
-                                <option value="default">Default Colors</option>
+                                <option style="text-align: center" value="default">Default Colors</option>
                                 <optgroup label="Basic">
                                     <option value="1">1-Color</option>
                                     <option value="2">2-Colors</option>
                                     <option value="3">3-Colors</option>
                                     <option value="4">4-Colors</option>
                                     <option value="5">5-Colors</option>
+                                    <option value="6">6-Colors</option>
                                 </optgroup>
-                                <optgroup label="Color Pallets">
-                                    <option value="c_rgb">RGB</option>
+                                <optgroup label="Red Pallets">
                                     <option value="c_reds">Fire</option>
+                                    <option value="c_rose">Rose</option>
+                                    <option value="c_scarlet_warm">Scarlet Warm</option>
+                                    <option value="c_sunny">Sol</option>
+                                </optgroup>
+                                <optgroup label="Green Pallets">
                                     <option value="c_greens">Grass</option>
+                                    <option value="c_frens">Frens</option>
+                                    <option value="c_healthy_leaves">Healthy Leaves</option>
+                                    <option value="c_earth">Earthen</option>
+                                </optgroup>
+                                <optgroup label="Blue Pallets">
                                     <option value="c_aqua">Aqua</option>
+                                    <option value="c_sweet_violet">Sweet Violet</option>
                                     <option value="c_corsairs">Corsairs</option>
+                                    <option value="c_twitter">Blue Bird</option>
+                                </optgroup>
+                                <optgroup label="Metallic Pallets">
                                     <option value="c_golden">Golden</option>
                                     <option value="c_sliver">Sliver</option>
-                                    <option value="c_earth">Earthen</option>
+                                    <option value="c_copper">Copper</option>
+                                    <option value="c_copper_oxid">Copper Oxid</option>
+                                </optgroup>
+                                <optgroup label="Miscellaneous Pallets">
+                                    <option value="c_rgb">RGB</option>
+                                    <option value="c_google">Google</option>
+                                    <option value="c_microsoft">Windows</option>
                                     <option value="c_cb">Distinct Mix</option>
                                     <option value="c_bigmix">Party Mix</option>
                                 </optgroup>
                             </select>
                         </div>
-
                         <div class="color-attributes-items" id="current-colors">
                             <input type="color" name="color" value="#93814d">
                             <input type="color" name="color" value="#c1c376">
@@ -203,7 +226,7 @@
                                 <div class="rules">
                                     <input type="text" name="axiom" placeholder="Axiom" required value="F+F+F">
                                 </div>
-                                <div class="tooltip"> ?
+                                <div class="tooltip">?
                                     <span class="tooltiptext">Start (letters)</span>
                                 </div>
                             </div>
@@ -213,7 +236,7 @@
                             <div class="ruleSet-Style">
                                 <div class="labels">Rule Set 1:</div>
                                 <div class="rules">
-                                    <input type="text" id="char" name="rules[1][char]" placeholder="Char" value="F">
+                                    <input type="text" id="char" maxlength="1" name="rules[1][char]" placeholder="Char" value="F">
                                     <input type="text" id="rule" name="rules[1][rule]" placeholder="Rule" value="F-F+F">
                                 </div>
                                 <div class="tooltip"> ?

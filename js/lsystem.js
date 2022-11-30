@@ -557,6 +557,117 @@ const replacementRules = {
             },
         ]
     },
+    arrowhead_tree: {
+        axiom: 'X',
+        angle: 30,
+        length: [0, 10],
+        iterations: 5,
+        rules: [
+            {
+                char: 'X',
+                rule: 'F[+X][-X]FX'
+            },
+            {
+                char: 'F',
+                rule: 'FF'
+            },
+        ]
+    },
+    fireball: {
+        //Original
+        axiom: 'Z',
+        angle: 120,
+        length: [10, 10],
+        iterations: 12,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F+F-G'
+            },
+            {
+                char: 'A',
+                rule: 'F'
+            },
+            {
+                char: 'B',
+                rule: 'ffff)-ff[ffAff]'
+            },
+            {
+                char: 'C',
+                rule: 'B+B+B+B'
+            },
+            {
+                char: 'D',
+                rule: 'C-fffC-fff-CD'
+            },
+            {
+                char: 'Z',
+                rule: 'D'
+            },
+        ]
+    },
+    galaxy: {
+        //Original
+        axiom: 'Z',
+        angle: 39,
+        length: [10, -10],
+        iterations: 15,
+        rules: [
+            {
+                char: 'F',
+                rule: 'F+F-G'
+            },
+            {
+                char: 'A',
+                rule: 'F'
+            },
+            {
+                char: 'B',
+                rule: 'ffff)-ff[ffAff]'
+            },
+            {
+                char: 'C',
+                rule: 'B+B+B+B'
+            },
+            {
+                char: 'D',
+                rule: 'C-fffC-fff-CD'
+            },
+            {
+                char: 'Z',
+                rule: 'D'
+            },
+        ]
+    },
+    hyper_frog: {
+        //Original
+        axiom: 'Z-Z-Z-Z',
+        angle: 60.69,
+        length: [0, 20],
+        iterations: 8,
+        rules: [
+            {
+                char: 'A',
+                rule: 'F-F+FA'
+            },
+            {
+                char: 'B',
+                rule: 'F+F+FB'
+            },
+            {
+                char: 'C',
+                rule: 'ABC'
+            },
+            {
+                char: 'N',
+                rule: 'f+f+f'
+            },
+            {
+                char: 'Z',
+                rule: '&fff[C]NZ'
+            }
+        ]
+    },
     debug: {
         //Uses this to debug
         axiom: '[F>FF>F]+FF]',
@@ -659,6 +770,18 @@ const colorList = {
     c_golden: ["#A5782B", "#C99738", "#F4D362", "#FCF8B8", "#E3C56D"],
     c_sliver: ["#aaa9ad", "#b8b7ba", "#c6c5c8", "#e2e2e3", "#f0f0f1", "#ffffff"],
     c_earth: ["#9D5F38", "#D19C4C", "#25963E", "#10C135"],
+    c_rose: ["#c83349", "#e06377", "#eeac99","#f9d5e5"],
+    c_sweet_violet: ["#622569", "#b8a9c9", "#d6d4e0","#5b9aa0"],
+    c_google: ["#4285F4", "#FBBC05", "#34A853","#EA4335"],
+    c_microsoft: ["#F65314", "#7CBB00", "#00A1F1","#FFBB00"],
+    c_twitter: ["#55ACEE", "#292F33", "#66757F","#CCD6DD","#E1E8ED","#FFFFFF"],
+    c_netflix: ["#221F1F","#E50914","#F5F5F1"],
+    c_frens: ["#116530","#21B6A8","#A3EBB1","#18A558"],
+    c_healthy_leaves: ["#3D550C","#81B622","#ECF87F","#59981A"],
+    c_copper: ["#9c5b1b","#a56323","#af6b2b","#b87333","#c17b3b","#cb8343","#d58c4b"],
+    c_copper_oxid: ["#b87333","#b17b53","#998b8f","#998b8f","#8593ad","#649bcc","#00a3eb"],
+    c_scarlet_warm: ["#44000A","#DD2255","#FD5D5B","#FCCA6F","#F9F7F2"],
+    c_sunny: ["#D14009","#FC9601","#FFCC33","#FFE484","#FFFFFF"],
 }
 
 let colors = colorList.c_yelLi
@@ -992,6 +1115,39 @@ document.addEventListener('DOMContentLoaded', function () {
             case "c_earth":
                 addColorsFromList(currentColors, colorList.c_earth);
                 break;
+            case "c_rose":
+                addColorsFromList(currentColors, colorList.c_rose);
+                break;
+            case "c_sweet_violet":
+                addColorsFromList(currentColors, colorList.c_sweet_violet);
+                break;
+            case "c_google":
+                addColorsFromList(currentColors, colorList.c_google);
+                break;
+            case "c_microsoft":
+                addColorsFromList(currentColors, colorList.c_microsoft);
+                break;
+            case "c_twitter":
+                addColorsFromList(currentColors, colorList.c_twitter);
+                break;
+            case "c_frens":
+                addColorsFromList(currentColors, colorList.c_frens);
+                break;
+            case "c_healthy_leaves":
+                addColorsFromList(currentColors, colorList.c_healthy_leaves);
+                break;
+            case "c_copper":
+                addColorsFromList(currentColors, colorList.c_copper);
+                break;
+            case "c_copper_oxid":
+                addColorsFromList(currentColors, colorList.c_copper_oxid);
+                break;
+            case "c_scarlet_warm":
+                addColorsFromList(currentColors, colorList.c_scarlet_warm);
+                break;
+            case "c_sunny":
+                addColorsFromList(currentColors, colorList.c_sunny);
+                break;
             default:
                 break;
         }
@@ -1159,6 +1315,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 fractal = replacementRules.islands_and_lakes;
                 populateRuleset(fractal);
                 break
+            case "arrowhead_tree":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.arrowhead_tree;
+                populateRuleset(fractal);
+                break
+            case "fireball":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.fireball;
+                populateRuleset(fractal);
+                break
+            case "galaxy":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.galaxy;
+                populateRuleset(fractal);
+                break
+            case "hyper_frog":
+                clearCurrentSVG();
+                clearFormData();
+                fractal = replacementRules.hyper_frog;
+                populateRuleset(fractal);
+                break
             default:
             //do nothing
         }
@@ -1177,7 +1357,7 @@ function addRule() {
     let template = `
         <div class="labels">Rule Set ${++ruleIndex}:</div>
         <div class="rules">
-            <input type="text" id="char" name="rules[${ruleIndex}][char]" placeholder="Char">
+            <input type="text" id="char" maxlength="1" name="rules[${ruleIndex}][char]" placeholder="Char">
             <input type="text" id="rule" name="rules[${ruleIndex}][rule]" placeholder="Rule">
         </div>
          <div class="tooltip"> ?

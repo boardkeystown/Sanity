@@ -195,6 +195,7 @@ body {
     background-color: #000000;
     font-family: monospace;
     padding: 0.09cm;
+    user-select: none;
 }
 
 #l-system-rules-label {
@@ -351,6 +352,7 @@ body {
     border-radius: 50%;
     cursor: help;
     font-family: monospace;
+    user-select: none;
 }
 
 /*https://www.w3schools.com/css/css_tooltip.asp*/
@@ -453,8 +455,10 @@ body {
 }
 
 #color-options {
+    text-align: left;
     height: 2em;
     color: black;
+    min-width: 11rem;
 }
 #color-options option {
     color: black;
